@@ -17,6 +17,7 @@
     "prismjs": "^1.17.1",
     "query-string": "5",
     "react": "^16.9.0",
+    "react-cookie": "^4.0.1",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
@@ -27,8 +28,8 @@
     "remove-markdown": "^0.3.0"
   },
   "scripts": {
-    "start": "cross-env NODE_PATH=src react-app-rewired start",
-    "build": "cross-env NODE_PATH=src react-app-rewired build",
+    "start": "PORT=8080 cross-env react-app-rewired start",
+    "build": "cross-env react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
   },

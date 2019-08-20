@@ -38,3 +38,5 @@ export const removePost = (id) => axios.delete(`/api/post/${id}`,
 )
 export const login = ({id, pw}) => axios.post('api/auth/login', {id, pw});
 export const checkLogin = () => axios.get('/api/auth/check');
+export const logout = ({token}) => axios.post('/api/auth/logout')
+export const register = ({name, id, pw}) => axios.post('/api/auth/register', {name, id, pw})

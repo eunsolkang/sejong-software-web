@@ -4,16 +4,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as LoginActions from 'store/modules/login';
 import Login from 'components/login/Login';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+import storage from 'lib/storage';
 
 class LoginContainer extends React.Component {
   handleLogin = async () =>{
 
-    const { LoginActions, id, pw, history }= this.props;
+    const { LoginActions, id, pw, history} = this.props;
     console.log(id, pw);
     try{
       await LoginActions.login({id, pw});
       console.log('로그인 성공');
+      const {jwt, logged }= this.props;
       history.push('/')
 
     }catch(e){
@@ -55,7 +57,9 @@ export default connect(
   (state) => ({
     id : state.login.getIn(['loginBox', 'id']),
     pw : state.login.getIn(['loginBox', 'pw']),
-    error : state.login.getIn(['loginBox', 'error'])
+    error : state.login.getIn(['loginBox', 'error']),
+    jwt : state.login.get('jwt'),
+    logged : state.login.get('logged'),
   }),
   (dispatch) => ({
     LoginActions : bindActionCreators(LoginActions, dispatch)

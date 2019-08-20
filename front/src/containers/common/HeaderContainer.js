@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Header from 'components/common/Header'
 
 import * as baseActions from 'store/modules/base';
+import * as loginActions from 'store/modules/base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -11,6 +12,21 @@ import { bindActionCreators } from 'redux';
 
 class HeaderContainer extends React.Component {
 
+
+  handleLogoutClick = async() =>{
+    console.log('test');
+    const { LoginActions, logged } = this.props;
+    if (logged){
+      try{
+        // await LoginActions.logout();
+        window.location.reload();
+      }catch(e){
+        console.log(e);
+      }
+
+    }
+    return;
+  }
   handleRemove = () =>{
     console.log('remove!!');
     const { BaseActions } = this.props;
@@ -18,8 +34,9 @@ class HeaderContainer extends React.Component {
   }
 
   render () {
-    const { handleRemove } = this
-    const { match } = this.props;
+    const { handleRemove, handleLogoutClick } = this
+    const { match, logged } = this.props;
+
 
     const { id } = match.params;
 
@@ -27,14 +44,20 @@ class HeaderContainer extends React.Component {
       <Header
         postIx={id}
         onRemove={handleRemove}
+        onLogout={handleLogoutClick}
+        logged={logged}
       />
     );
   }
 }
 
 export default connect(
-  (state) => ({}),
+  (state) => ({
+    logged : state.login.get('logged')
+  }),
   (dispatch) => ({
-    BaseActions : bindActionCreators(baseActions, dispatch)
+    BaseActions : bindActionCreators(baseActions, dispatch),
+    LoginActions : bindActionCreators(loginActions, dispatch)
+
   })
 )(withRouter(HeaderContainer));

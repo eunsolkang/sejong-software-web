@@ -24,11 +24,11 @@ class Post extends React.Component {
 
     if(loading) return null;
 
-    const { title, contents, createdAt } = post.toJS();
+    const { title, contents, createdAt, user_ix } = post.toJS();
 
     return (
       <div>
-        <PostInfo title={title} publishedDate={createdAt}/>
+        <PostInfo title={title} publishedDate={createdAt} userName={user_ix}/>
         <PostBody body={contents}/>
       </div>
     )

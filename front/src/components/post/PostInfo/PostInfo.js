@@ -8,13 +8,13 @@ import moment from 'moment';
 
 const cx = classNames.bind(styles);
 
-const PostInfo = ({publishedDate, title}) => {
+const PostInfo = ({publishedDate, title, userName}) => {
   return (
     <div className={cx('post-info')}>
       <div className={cx('info')}>
         <h1>{title}</h1>
-        <div className={cx('tags')}>
-
+        <div className={cx('userName')}>
+          {userName}
         </div>
         <div className={cx('date')}>
           {moment(publishedDate).format('ll')}

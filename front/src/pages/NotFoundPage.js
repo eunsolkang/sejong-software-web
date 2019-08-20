@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import NotFound from 'components/common/NotFound'
 
-const NotFoundPage = (props) => {
+
+const NotFoundPage = ({history}) => {
   return (
-    <div>
-      NotFound
-    </div>
+    <NotFound onGoBack={history.goBack}/>
   )
 }
 
