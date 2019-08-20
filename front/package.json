@@ -1,0 +1,53 @@
+{
+  "name": "blog-project",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://dochoon.com:3000",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "classnames": "^2.2.6",
+    "codemirror": "^5.48.2",
+    "cross-env": "^5.2.0",
+    "immutable": "^4.0.0-rc.12",
+    "include-media": "^1.4.9",
+    "marked": "^0.7.0",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
+    "open-color": "^1.7.0",
+    "prismjs": "^1.17.1",
+    "query-string": "5",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.0",
+    "redux": "^4.0.4",
+    "redux-actions": "^2.6.5",
+    "redux-pender": "^2.0.12",
+    "remove-markdown": "^0.3.0"
+  },
+  "scripts": {
+    "start": "cross-env NODE_PATH=src react-app-rewired start",
+    "build": "cross-env NODE_PATH=src react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react-app-rewired": "^2.1.3"
+  }
+}
