@@ -10,7 +10,23 @@ import ic_menu from 'ic/ic_menu.png'
 const cx = classNames.bind(styles);
 
 
-const Header = ({postIx, onRemove, logged, onLogout, error, onSidebarOpen}) => {
+const Header = ({postIx, onRemove, logged, onLogout, error, onSidebarOpen, boards}) => {
+  const boardList = boards && boards.map(
+    (board) => {
+      const {name, is_admin, ix} = board.toJS();
+      let toPath = '/?board_ix=' + ix
+      return (
+        <NavLink
+          exact
+          to={toPath}
+          className={cx('board-nav')}
+          key={ix}
+        >
+        {name}
+      </NavLink>
+      )
+    }
+  );
   return (
     <header className={cx('header')}>
      <div className={cx('header-content')}>
@@ -19,10 +35,7 @@ const Header = ({postIx, onRemove, logged, onLogout, error, onSidebarOpen}) => {
         <img onClick={onSidebarOpen} src={ic_menu}/>
       </div>
       <div className={cx('nav')}>
-        <NavLink exact to='?board_ix=1'  className={cx('board-nav')}>게시판1번</NavLink>
-        <NavLink exact to='?board_ix=2'  className={cx('board-nav')}>게시판2번</NavLink>
-        <NavLink exact to='?board_ix=3'  className={cx('board-nav')}>게시판3번</NavLink>
-        <NavLink exact to='?board_ix=4'  className={cx('board-nav')}>게시판4번</NavLink>
+        {boardList}
       </div>
       <div className={cx('right')}>
         {

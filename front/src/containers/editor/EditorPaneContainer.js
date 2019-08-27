@@ -4,17 +4,33 @@ import EditorPane from 'components/editor/EditorPane';
 import {bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as editorActions from 'store/modules/editor';
-import * as LoginActions from 'store/modules/editor';
+import * as boardActions from 'store/modules/board';
 
 class EditorPaneContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      boardName: '게시판선택'
+    };
+  }
   handleChangeInput = ({name, value, type}) => {
     const { EditorActions, jwt } = this.props;
-
     EditorActions.changeInput({name, value});
   }
+  handleChangeMenu = (e) => {
+    const { EditorActions } = this.props;
+    const { id } = e.target
+    this.setState({
+      boardName : e.target.name
+    })
+    console.log(id);
+    EditorActions.changeMenu({boardIx : id})
+  }
+
   render () {
-    const { title, markdown, privateCheck, commentCheck } = this.props;
-    const { handleChangeInput } = this;
+    const { boardName } = this.state;
+    const { title, markdown, privateCheck, commentCheck, boardIx, boards } = this.props;
+    const { handleChangeInput, handleChangeMenu } = this;
     return (
       <EditorPane
         title={title}
@@ -22,6 +38,9 @@ class EditorPaneContainer extends React.Component {
         onChangeInput={handleChangeInput}
         privateCheck={privateCheck}
         commentCheck={commentCheck}
+        onChangeMenu={handleChangeMenu}
+        boardPick={boardName}
+        boards={boards}
       />
     );
   }
@@ -33,9 +52,12 @@ export default connect(
     markdown : state.editor.get('markdown'),
     jwt : state.login.get('jwt'),
     commentCheck : state.editor.get('commentCheck'),
-    privateCheck : state.editor.get('privateCheck')
+    privateCheck : state.editor.get('privateCheck'),
+    boardIx : state.editor.get('boardIx'),
+    boards : state.board.get('boards'),
   }),
   (dispatch) => ({
-    EditorActions : bindActionCreators(editorActions, dispatch)
+    EditorActions : bindActionCreators(editorActions, dispatch),
+    BoardActions : bindActionCreators(boardActions, dispatch)
   })
 )(EditorPaneContainer);

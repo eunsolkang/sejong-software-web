@@ -10,11 +10,11 @@ import * as editorActions from 'store/modules/editor';
 
 class EditorHeaderContainer extends React.Component {
   componentDidMount(){
-    const { EditorActions , location } = this.props;
+    const { EditorActions , location,jwt } = this.props;
     EditorActions.initialize();
     const { id } = queryString.parse(location.search);
     if( id ) {
-      EditorActions.getPost(id);
+      EditorActions.getPost({id, jwt});
     }
   }
   handleGoBack = () =>{
@@ -24,10 +24,10 @@ class EditorHeaderContainer extends React.Component {
 
   handleSubmit = async() =>{
     const { title, markdown, EditorActions, history,
-      location, jwt, commentCheck, privateCheck} = this.props;
+      location, jwt, commentCheck, privateCheck, boardIx} = this.props;
       console.log(privateCheck, commentCheck);
     const post = {
-      board_ix : 2,
+      board_ix : boardIx,
       title : title,
       contents : markdown,
       is_comment : commentCheck,
@@ -48,12 +48,14 @@ class EditorHeaderContainer extends React.Component {
   }
   render () {
     const { handleGoBack, handleSubmit } = this;
+    const { boardIx } = this.props;
     const {id } = queryString.parse(this.props.location.search);
     return (
       <EditorHeader
         onGoBack={handleGoBack}
         onSubmit={handleSubmit}
         isEdit={id ? true : false}
+        boardIx={boardIx}
       />
     );
   }
@@ -67,7 +69,7 @@ export default connect(
     jwt : state.login.get('jwt'),
     commentCheck : state.editor.get('commentCheck'),
     privateCheck : state.editor.get('privateCheck'),
-
+    boardIx : state.editor.get('boardIx'),
   }),
   (dispatch) => ({
     EditorActions : bindActionCreators(editorActions, dispatch)

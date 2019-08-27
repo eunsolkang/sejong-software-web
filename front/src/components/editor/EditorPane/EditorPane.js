@@ -37,9 +37,6 @@ class EditorPane extends React.Component {
   }
   componentDidMount(){
     this.initializeEditor();
-
-
-
   }
   handleChange = (e) => {
     const { onChangeInput } = this.props;
@@ -67,18 +64,30 @@ class EditorPane extends React.Component {
   }
   render () {
     const { handleChange } = this;
-    const { tags, title, markdown, commentCheck, privateCheck } = this.props;
-
+    const { tags, title, markdown, commentCheck, privateCheck, onChangeMenu, boardPick, boards } = this.props;
+    const boardList = boards && boards.map(
+      (board) => {
+        const {name, is_admin, ix} = board.toJS();
+        return (
+          <a
+            onClick={onChangeMenu}
+            name={name}
+            key={ix}
+            id={ix}
+          >
+          {name}
+        </a>
+        )
+      }
+    );
     return (
       <div className={cx('editor-pane')}>
         <div className={cx('title-box')}>
           <div className={cx('option-box')}>
             <div className={cx('dropdown')}>
-              <button className={cx('drop-btn')}>게시판선택</button>
+              <button className={cx('drop-btn')}>{boardPick}</button>
               <div className={cx('dropdown-content')}>
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                {boardList}
               </div>
             </div>
             <div className={cx('comment-able')}>

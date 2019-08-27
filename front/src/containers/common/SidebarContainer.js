@@ -18,7 +18,7 @@ class SidebarContainer extends React.Component {
     const { sidebarOpenProps, BaseActions } = this.props;
     this.setState({
       sidebarOpen : open
-    })
+    });
     sidebarOpenProps ? BaseActions.closeSidebar() : BaseActions.openSidebar()
   }
   componentDidUpdate(prevProps, prevState){
@@ -35,14 +35,13 @@ class SidebarContainer extends React.Component {
   render () {
     const { onSetSidebarOpen } = this;
     const { sidebarOpen } = this.state;
-    const { children } = this.props;
+    const { children, boards } = this.props;
     return(
       <Sidebar
-          sidebar={<SidebarContents/>}
+          sidebar={<SidebarContents boards={boards} />}
           open={sidebarOpen}
           onSetOpen={onSetSidebarOpen}
           styles={{ sidebar: { background: "white" } }}
-
       >
         {children}
       </Sidebar>
@@ -52,9 +51,10 @@ class SidebarContainer extends React.Component {
 
 export default connect(
   (state) => ({
-    sidebarOpenProps : state.base.get('sidebarOpenProps')
+    sidebarOpenProps : state.base.get('sidebarOpenProps'),
+    boards : state.board.get('boards'),
   }),
   (dispatch) => ({
-    BaseActions : bindActionCreators(baseActions, dispatch)
+    BaseActions : bindActionCreators(baseActions, dispatch),
   })
 )(SidebarContainer);

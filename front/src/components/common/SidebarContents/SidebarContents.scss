@@ -1,6 +1,37 @@
 @import "styles/utils";
 .sidebar-contents{
-  border: 1px solid black;
-  margin-top: 5rem;
+  margin-top: 4rem;
   min-width: 12.5rem;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  .title{
+    font-size: 1.25em;
+    color:$oc-blue-6;
+    font-weight: 500;
+    margin-top: .1rem;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+  }
+  .nav{
+    color: $oc-gray-7;
+    padding-left: 1rem;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+    // margin-left: .5rem;
+
+    border-top: 1px solid $oc-gray-3;
+    &:first-of-type{
+      margin-top: 1rem;
+    }
+    &:last-of-type{
+      border-bottom: 1px solid $oc-gray-3;
+    }
+    &:active{
+      color:$oc-blue-6;
+      background: $oc-gray-3;
+      transition: color 0.4s ease 0s,background 0.4s ease 0s;
+    }
+
+  }
 }

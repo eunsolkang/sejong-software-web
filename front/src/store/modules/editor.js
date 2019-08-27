@@ -9,9 +9,11 @@ const INITIALIZE = 'editor/INITIALIZE';
 const CHANGE_INPUT = 'editor/CHANGE_INPUT';
 const WRITE_POST = 'editor/WRITE_POST';
 const EDIT_POST = 'editor/EDIT_POST'
+const CHANGE_MENU = 'editor/CHANGE_MENU'
 
 export const getPost = createAction(GET_POST, api.getPost)
 export const initialize = createAction(INITIALIZE);
+export const changeMenu = createAction(CHANGE_MENU);
 export const changeInput = createAction(CHANGE_INPUT);
 export const writePost = createAction(WRITE_POST, api.writePost);
 export const editPost = createAction(EDIT_POST, api.editPost);
@@ -22,7 +24,8 @@ const initialState = Map({
   tags: '',
   postId : null,
   privateCheck : false,
-  commentCheck : false
+  commentCheck : false,
+  boardIx : false
 })
 
 export default handleActions({
@@ -30,6 +33,10 @@ export default handleActions({
   [CHANGE_INPUT]: (state, action) => {
     const { name, value } = action.payload;
     return state.set(name, value);
+  },
+  [CHANGE_MENU]: (state, action) => {
+    const { boardIx } = action.payload;
+    return state.set('boardIx', boardIx);
   },
   ...pender({
     type: WRITE_POST,

@@ -12,7 +12,7 @@ const CHECK_USERINFO = 'login/CHECK_USERINFO'
 const AUTO_LOGIN = 'login/AUTO_LOGIN'
 
 export const login = createAction(LOGIN, api.login);
-export const logout = createAction(LOGOUT, api.logout);
+export const logout = createAction(LOGOUT);
 export const checkLogin = createAction(CHECK_LOGIN, api.checkLogin);
 export const changeInput = createAction(CHANGE_INPUT);
 export const autoLogin = createAction(AUTO_LOGIN);
@@ -65,6 +65,11 @@ export default handleActions({
                   .setIn(['loginBox', 'pw'], '');
     }
   }),
+  [LOGOUT]: (state, action) => {
+    const { jwt } = action.payload;
+    return state.set('jwt', '')
+                .set('logged', false )
+  },
   [CHANGE_INPUT]: (state, action) => {
     const { name, value } = action.payload;
     return state.setIn(['loginBox', name], value);

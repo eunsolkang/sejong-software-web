@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Header from 'components/common/Header'
 
 import * as baseActions from 'store/modules/base';
-import * as loginActions from 'store/modules/base';
+import * as loginActions from 'store/modules/login';
 import * as boardActions from 'store/modules/board';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,14 +14,12 @@ import { bindActionCreators } from 'redux';
 
 class HeaderContainer extends React.Component {
 
-
   handleLogoutClick = async() =>{
-    console.log('test');
-    const {logged, BoardActions } = this.props;
+    const {logged, LoginActions, jwt } = this.props;
     if (logged){
       try{
-        // await LoginActions.logout();
-        window.location.reload();
+        localStorage.logged = '';
+        LoginActions.logout({jwt});
       }catch(e){
         console.log(e);
       }
@@ -42,13 +40,10 @@ class HeaderContainer extends React.Component {
 
   render () {
     const { handleRemove, handleLogoutClick, handleSidebarOpen } = this
-    const { match, logged, error } = this.props;
-
-
+    const { match, logged, error, boards } = this.props;
     const { id } = match.params;
 
     return (
-
       <Header
         postIx={id}
         onRemove={handleRemove}
@@ -56,6 +51,7 @@ class HeaderContainer extends React.Component {
         logged={logged}
         error={error}
         onSidebarOpen={handleSidebarOpen}
+        boards={boards}
       />
     );
   }
@@ -66,7 +62,9 @@ export default connect(
     logged : state.login.get('logged'),
     boardName : state.board.get('board'),
     error : state.post.get('error'),
-    sidebarOpenProps : state.base.get('sidebarOpenProps')
+    sidebarOpenProps : state.base.get('sidebarOpenProps'),
+    jwt : state.login.get('jwt'),
+    boards : state.board.get('boards')
   }),
   (dispatch) => ({
     BaseActions : bindActionCreators(baseActions, dispatch),

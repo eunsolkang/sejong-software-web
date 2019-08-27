@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import styles from './PostList.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,7 @@ const cx = classNames.bind(styles);
 const PostItem = ({title, ix, createdAt, isPrivate, userName}) => {
   let privated = false
   if(title === 'private post'){
+    console.log('비밀글');
     privated = true
   }
   return (

@@ -16,10 +16,12 @@
       background-color: $oc-gray-7;
       border-bottom: 2px solid $oc-gray-9;
       .dropdown {
+
         border-right: 2px solid $oc-gray-9;
         // display: inline-block;
         height: 100%;
         .drop-btn {
+          min-width: 110px;
           height: 100%;
           background-color: $oc-gray-7;
           color: white;
@@ -103,10 +105,17 @@
     background: $oc-gray-9;
     display: flex;
     flex-direction: column;
+
     :global .CodeMirror{
+      height: none !important;
       font-size: 1rem;
-      flex:1;
+      flex:1!important;
       font-family: 'D2 Coding'
+    }
+    .CodeMirror{
+      height: none !important;
+      font-size: 1rem;
+      flex:1!important;
     }
   }
   .tags{

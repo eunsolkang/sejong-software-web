@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as loginActions from 'store/modules/login';
+import * as boardActions from 'store/modules/board';
 
 class Base extends React.Component {
   initialize = async() =>{
-    const { LoginActions } = this.props;
+    const { LoginActions, BoardActions } = this.props;
     if ( localStorage.logged ) {
       try{
         await LoginActions.autoLogin({
@@ -15,6 +16,11 @@ class Base extends React.Component {
       }catch(e){
         console.log(e);
       }
+    }
+    try{
+      await BoardActions.getBoardList();
+    }catch(e){
+      console.log(e);
     }
   }
   componentDidMount(){
@@ -33,6 +39,7 @@ export default connect(
   null,
   (dispatch) => ({
     LoginActions : bindActionCreators(loginActions, dispatch),
+    BoardActions : bindActionCreators(boardActions, dispatch)
   })
 
 )(Base);

@@ -38,17 +38,27 @@ export const removePost = ({id, jwt}) => axios.delete(`/api/post/${id}`,
   }
 )
 export const login = ({id, pw}) => axios.post('api/auth/login', {id, pw});
+
 export const checkLogin = ({jwt}) => axios.get('/api/auth/check',
   {headers: {
           "x-access-token" : jwt
         }
   }
 );
-export const logout = ({token}) => axios.post('/api/auth/logout')
+
+export const logout = ({jwt}) => axios.get('/api/auth/logout',
+  {headers: {
+          "x-access-token" : jwt
+        }
+  }
+);
+
 export const register = ({name, id, pw}) => axios.post('/api/auth/register', {name, id, pw})
 
 export const userInfo = ({user_ix}) => axios.get(`/api/user/${user_ix}`);
+
 export const getCommentList = ({id}) => axios.get(`/api/comment?post_ix=${id}`);
+
 export const writeComment = ({post_ix, parent_ix, is_private, is_anon, contents, is_comment_parent}, jwt) => axios.post(`/api/comment`,
   {post_ix, parent_ix, is_private, is_anon, contents},
   {headers: {
@@ -57,5 +67,6 @@ export const writeComment = ({post_ix, parent_ix, is_private, is_anon, contents,
 }
 );
 
-
 export const getBoardName = ({boardIx}) => axios.get(`/api/board/${boardIx}`);
+
+export const getBoardList = () => axios.get('/api/board');
