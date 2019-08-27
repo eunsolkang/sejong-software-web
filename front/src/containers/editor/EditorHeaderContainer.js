@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import EditorHeader from 'components/editor/EditorHeader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -23,11 +23,15 @@ class EditorHeaderContainer extends React.Component {
   }
 
   handleSubmit = async() =>{
-    const { title, markdown, tags, EditorActions, history, location} = this.props;
+    const { title, markdown, EditorActions, history,
+      location, jwt, commentCheck, privateCheck} = this.props;
+      console.log(privateCheck, commentCheck);
     const post = {
       board_ix : 2,
       title : title,
       contents : markdown,
+      is_comment : commentCheck,
+      is_private : privateCheck
     };
     try{
       const { id } = queryString.parse(location.search);
@@ -36,7 +40,7 @@ class EditorHeaderContainer extends React.Component {
         history.push(`/post/${id}`);
         return;
       }
-      await EditorActions.writePost(post);
+      await EditorActions.writePost(post, jwt);
       history.push(`/post/${this.props.postId}`);
     } catch(e){
       console.log(e);
@@ -45,7 +49,6 @@ class EditorHeaderContainer extends React.Component {
   render () {
     const { handleGoBack, handleSubmit } = this;
     const {id } = queryString.parse(this.props.location.search);
-    console.log(id);
     return (
       <EditorHeader
         onGoBack={handleGoBack}
@@ -60,8 +63,11 @@ export default connect(
   (state) => ({
     title : state.editor.get('title'),
     markdown : state.editor.get('markdown'),
-    tags : state.editor.get('tags'),
-    postId : state.editor.get('postId')
+    postId : state.editor.get('postId'),
+    jwt : state.login.get('jwt'),
+    commentCheck : state.editor.get('commentCheck'),
+    privateCheck : state.editor.get('privateCheck'),
+
   }),
   (dispatch) => ({
     EditorActions : bindActionCreators(editorActions, dispatch)

@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import styles from './ListWapper.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';

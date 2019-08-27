@@ -1,24 +1,27 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import EditorPane from 'components/editor/EditorPane';
 import {bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as editorActions from 'store/modules/editor';
+import * as LoginActions from 'store/modules/editor';
 
 class EditorPaneContainer extends React.Component {
-  handleChangeInput = ({name, value}) => {
-    const { EditorActions } = this.props;
+  handleChangeInput = ({name, value, type}) => {
+    const { EditorActions, jwt } = this.props;
+
     EditorActions.changeInput({name, value});
   }
   render () {
-    const { title, markdown } = this.props;
+    const { title, markdown, privateCheck, commentCheck } = this.props;
     const { handleChangeInput } = this;
-    console.log(markdown);
     return (
       <EditorPane
         title={title}
         markdown={markdown}
         onChangeInput={handleChangeInput}
+        privateCheck={privateCheck}
+        commentCheck={commentCheck}
       />
     );
   }
@@ -28,6 +31,9 @@ export default connect(
   (state) => ({
     title : state.editor.get('title'),
     markdown : state.editor.get('markdown'),
+    jwt : state.login.get('jwt'),
+    commentCheck : state.editor.get('commentCheck'),
+    privateCheck : state.editor.get('privateCheck')
   }),
   (dispatch) => ({
     EditorActions : bindActionCreators(editorActions, dispatch)

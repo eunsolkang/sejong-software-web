@@ -1,16 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import classNames from 'classnames/bind';
 import styles from './PostBody.scss'
 import MarkdownRender from 'components/common/MarkdownRender';
 
 const cx = classNames.bind(styles);
 
-const PostBody = ({body}) => {
+const PostBody = ({body, error}) => {
   return (
     <div className={cx('post-body')}>
       <div className={cx('paper')}>
-        <MarkdownRender markdown={body}/>
+        {error ?  <div>ERROR :: 권한없음</div> :<MarkdownRender markdown={body}/>}
       </div>
     </div>
   )

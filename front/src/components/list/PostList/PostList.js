@@ -9,26 +9,34 @@ import removeMd from 'remove-markdown';
 
 const cx = classNames.bind(styles);
 
-const PostItem = ({title, ix}) => {
+const PostItem = ({title, ix, createdAt, isPrivate, userName}) => {
+  let privated = false
+  if(title === 'private post'){
+    privated = true
+  }
   return (
-      <div className={cx('post-item')}>
-        <h2><Link to={`/post/${ix}`}>{title}</Link></h2>
-        <div className={cx('date')}>dkdk</div>
+      <div className={cx('post-item', {isPrivate})}>
+        <h2><Link className={cx({isPrivate})} to={`/post/${ix}`}>{privated ? <div>비밀글입니다</div> : title}</Link></h2>
+        <div className={cx('date', {isPrivate})}>{moment(createdAt).format('ll')} / {userName ? userName : "이름없음"}</div>
       </div>
   )
 }
 const PostList = ({posts}) => {
   const postList = posts.map(
     (post) => {
-      const {ix, title} = post.toJS();
+      const {ix, title, createdAt, is_private, user_name} = post.toJS();
       return (
         <PostItem
           title={title}
           key={ix}
           ix={ix}
+          createdAt={createdAt}
+          isPrivate={is_private}
+          userName={user_name}
         />
       )
     }
+
   );
   return (
     <div className={cx('post-list')}>

@@ -1,24 +1,32 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import styles from './Header.scss';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import Button from 'components/common/Button';
+import ic_menu from 'ic/ic_menu.png'
 
 
 const cx = classNames.bind(styles);
 
 
-const Header = ({postIx, onRemove, logged, onLogout}) => {
+const Header = ({postIx, onRemove, logged, onLogout, error, onSidebarOpen}) => {
   return (
     <header className={cx('header')}>
      <div className={cx('header-content')}>
       <div className={cx('brand')}>
-        <Link to="/">sejong</Link>
+        <Link to='/' className={cx('logo')}> SEJONG </Link>
+        <img onClick={onSidebarOpen} src={ic_menu}/>
+      </div>
+      <div className={cx('nav')}>
+        <NavLink exact to='?board_ix=1'  className={cx('board-nav')}>게시판1번</NavLink>
+        <NavLink exact to='?board_ix=2'  className={cx('board-nav')}>게시판2번</NavLink>
+        <NavLink exact to='?board_ix=3'  className={cx('board-nav')}>게시판3번</NavLink>
+        <NavLink exact to='?board_ix=4'  className={cx('board-nav')}>게시판4번</NavLink>
       </div>
       <div className={cx('right')}>
         {
-          postIx && logged && [
+          postIx && logged && !error && [
             <Button key="edit" theme="outline" to={`/editor?id=${postIx}`}>수정</Button>,
             <Button key="remove" theme="outline" onClick={onRemove}>삭제</Button>
           ]

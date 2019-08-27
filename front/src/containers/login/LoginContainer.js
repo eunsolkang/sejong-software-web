@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as LoginActions from 'store/modules/login';
@@ -10,29 +10,20 @@ import storage from 'lib/storage';
 class LoginContainer extends React.Component {
   handleLogin = async () =>{
 
-    const { LoginActions, id, pw, history} = this.props;
-    console.log(id, pw);
+    const { LoginActions, id, pw, history, error} = this.props;
     try{
       await LoginActions.login({id, pw});
-      console.log('로그인 성공');
-      const {jwt, logged }= this.props;
+      const {jwt, logged } = this.props;
+      localStorage.logged = jwt;
       history.push('/')
-
     }catch(e){
       console.log(e);
     }
   }
-  handleIdChange = (e) => {
-    console.log('아이디 변경');
-    const { value } = e.target;
+  handleChange = (e) => {
+    const { name, value } = e.target;
     const { LoginActions } = this.props;
-    LoginActions.changeIdInput(value);
-  }
-  handlePwChange = (e) => {
-    console.log('비밀번호 변경');
-    const { value } = e.target;
-    const { LoginActions } = this.props;
-    LoginActions.changePasswordInput(value);
+    LoginActions.changeInput({name, value});
   }
   handleKeyPress = (e) => {
     if(e.key === 'enter'){
@@ -42,12 +33,12 @@ class LoginContainer extends React.Component {
 
   render () {
     const {
-      handleLogin, handleIdChange, handlePwChange, handleKeyPress
+      handleLogin, handleChange, handleKeyPress
     } = this;
     const { error, pw, id}= this.props;
     return (
       <Login
-        onLogin={handleLogin} onIdChange={handleIdChange} onPwChange={handlePwChange} onKeyPress={handleKeyPress} userid={id} password={pw}
+        onLogin={handleLogin} onChange={handleChange} onKeyPress={handleKeyPress} userid={id} password={pw} error={error}
       />
     )
   }

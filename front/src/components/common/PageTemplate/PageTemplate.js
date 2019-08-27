@@ -1,9 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import styles from './PageTemplate.scss'
 import classNames from 'classnames/bind'
 import HeaderContainer from 'containers/common/HeaderContainer'
+import SidebarContainer from 'containers/common/SidebarContainer'
+
 import Footer from 'components/common/Footer'
+
 
 
 const cx = classNames.bind(styles);
@@ -11,11 +14,13 @@ const cx = classNames.bind(styles);
 const PageTemplate = ({children}) => {
   return (
     <div className={cx('page-template')}>
-      <HeaderContainer/>
-      <main>
-        {children}
-      </main>
-      <Footer/>
+      <SidebarContainer>
+        <HeaderContainer/>
+        <main>
+          {children}
+        </main>
+      </SidebarContainer>
+
     </div>
   )
 }

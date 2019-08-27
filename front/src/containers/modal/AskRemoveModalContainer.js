@@ -1,9 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as baseActions from 'store/modules/base';
 import * as postActions from 'store/modules/post';
+import * as LoginActions from 'store/modules/login';
 import AskRemoveModal from 'components/modal/AskRemoveModal';
 import { withRouter } from 'react-router-dom';
 
@@ -14,12 +15,11 @@ class AskRemoveModalContainer extends React.Component {
   }
   handleConfirm = async () =>{
 
-    const { BaseActions, PostActions, history, match } = this.props;
+    const { BaseActions, PostActions, history, match, jwt } = this.props;
     const { id } = match.params;
 
     try {
-
-      await PostActions.removePost(id);
+      await PostActions.removePost({id, jwt});
       BaseActions.hideModal('remove');
       history.push('/');
     } catch(e){
@@ -38,10 +38,12 @@ class AskRemoveModalContainer extends React.Component {
 
 export default connect(
   (state) => ({
-    visible : state.base.getIn(['modal', 'remove'])
+    visible : state.base.getIn(['modal', 'remove']),
+    jwt : state.login.get('jwt')
   }),
   (dispatch) => ({
     BaseActions : bindActionCreators(baseActions, dispatch),
-    PostActions : bindActionCreators(postActions, dispatch)
+    PostActions : bindActionCreators(postActions, dispatch),
+    LoginActions : bindActionCreators(LoginActions, dispatch)
   })
 )(withRouter(AskRemoveModalContainer));

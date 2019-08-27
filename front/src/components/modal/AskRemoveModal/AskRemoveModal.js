@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import styles from './AskRemoveModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from 'components/modal/ModalWrapper';

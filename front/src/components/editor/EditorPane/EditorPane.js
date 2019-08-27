@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import classNames from 'classnames/bind';
 import styles from './EditorPane.scss'
 
@@ -43,7 +43,8 @@ class EditorPane extends React.Component {
   }
   handleChange = (e) => {
     const { onChangeInput } = this.props;
-    const { value, name} = e.target;
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    const {name, type} = e.target;
     onChangeInput({name, value});
   }
   handleChangeMarkdown = (doc) => {
@@ -66,17 +67,45 @@ class EditorPane extends React.Component {
   }
   render () {
     const { handleChange } = this;
-    const { tags, title, markdown } = this.props;
+    const { tags, title, markdown, commentCheck, privateCheck } = this.props;
 
     return (
       <div className={cx('editor-pane')}>
-        <input
-          className={cx('title')}
-          placeholder="제목을 입력하세요"
-          name="title"
-          value={title}
-          onChange={handleChange}
-        />
+        <div className={cx('title-box')}>
+          <div className={cx('option-box')}>
+            <div className={cx('dropdown')}>
+              <button className={cx('drop-btn')}>게시판선택</button>
+              <div className={cx('dropdown-content')}>
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+              </div>
+            </div>
+            <div className={cx('comment-able')}>
+              댓글 작성 허용
+              <input type="checkbox"
+                     name="commentCheck"
+                     checked={commentCheck}
+                     onChange={handleChange}
+              />
+            </div>
+            <div className={cx('comment-able')}>
+              비밀글
+              <input type="checkbox"
+                     name="privateCheck"
+                     checked={privateCheck}
+                     onChange={handleChange}
+              />
+            </div>
+          </div>
+          <input
+            className={cx('title')}
+            placeholder="제목을 입력하세요"
+            name="title"
+            value={title}
+            onChange={handleChange}
+          />
+        </div>
       <div className={cx('code-editor')} ref={ref => this.editor=ref}></div>
         <div className={cx('tags')}>
           <div className={cx('description')}>테그</div>

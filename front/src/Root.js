@@ -5,6 +5,7 @@ import App from 'components/App';
 import { Provider } from 'react-redux';
 import configure from 'store/configure';
 import { CookiesProvider } from 'react-cookie';
+import SidebarContainer from 'containers/common/SidebarContainer'
 
 const store = configure();
 
@@ -13,7 +14,7 @@ const Root = (props) => {
     <CookiesProvider>
       <Provider store={store}>
         <BrowserRouter>
-          <App/>
+            <App/>
         </BrowserRouter>
       </Provider>
     </CookiesProvider>

@@ -7,10 +7,12 @@ import * as api from  'lib/api';
 
 const GET_POST_LIST = 'list/GET_POST_LIST';
 
-export const getPostList = createAction(GET_POST_LIST, api.getPostList);
+
+export const getPostList = createAction(GET_POST_LIST, api.getPostList, meta=>meta);
 
 const initialState = Map({
-  posts : List()
+  posts : List(),
+  count : 0
 });
 
 export default handleActions({
@@ -19,6 +21,7 @@ export default handleActions({
     onSuccess : (state, action) => {
       const { data: posts } = action.payload;
       return state.set('posts', fromJS(posts))
+                  .set('count', posts.length)
     }
   })
 }, initialState);

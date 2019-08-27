@@ -1,0 +1,40 @@
+@import "styles/utils";
+
+.comment-list{
+    // padding: 2rem;
+    padding-top: 1.75rem;
+    padding-bottom: 2.5rem;
+
+    transform: translateY(-3rem);
+    margin: 0 auto;
+    // min-height: 20rem;
+    width:1024px;
+    @include media("<large"){ width: 768px; }
+    @include media("<medium"){ width: calc(100% - 2rem); }
+}
+.comment{
+  background: white;
+  padding-top: .75rem;
+  padding-bottom: 1.25rem;
+  padding-left: 1.75rem;
+  padding-right: 2rem;
+  word-break: keep-all;
+  @include material-shadow(1, 0.7);
+  font-weight: 400;
+  & + & {
+    margin-top: 1rem;
+  }
+  .user-name{
+    margin-bottom: .5rem;
+    border-bottom: 1px solid lightgray;
+    display: inline-block;
+    font-weight: 400;
+    font-size: .75rem;
+    padding-bottom: .25rem;
+  }
+  .comment-date{
+    margin-top: .75rem;
+    font-weight: 300;
+    font-size: .75rem;
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 import EditorTemplate from 'components/editor/EditorTemplate'
 import EditorHeaderContainer from 'containers/editor/EditorHeaderContainer';
 import EditorPaneContainer from 'containers/editor/EditorPaneContainer'

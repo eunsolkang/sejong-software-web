@@ -20,7 +20,9 @@ const initialState = Map({
   title : '',
   markdown: '',
   tags: '',
-  postId : null
+  postId : null,
+  privateCheck : false,
+  commentCheck : false
 })
 
 export default handleActions({

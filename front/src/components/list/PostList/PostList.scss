@@ -4,24 +4,37 @@
   .post-item{
     padding: 1.5rem;
     transition: all .15s ease-in;
-
+    &.isPrivate:hover{
+      background: none;
+    }
     h2{
       font-size: 2rem;
       font-weight: 400;
       margin: 0;
+      margin-bottom: .25rem;
       color:$oc-gray-8;
       a{
         transition: all .15s ease-in;
         border-bottom: 1px solid transparent;
+        &.isPrivate:hover{
+          color:$oc-gray-6;
+        }
+        &.isPrivate{
+          color:$oc-gray-6;
+        }
       }
       a:hover{
         color:$oc-blue-6;
-        border-bottom: 1px solid solid $oc-blue-6;
       }
+
+
     }
     .date{
       font-size: .85rem;
       color: $oc-gray-7;
+      &.isPrivate{
+        color:$oc-gray-6;
+      }
     }
     p{
       font-weight: 600;

@@ -10,10 +10,10 @@
   padding-right: 1rem;
 
   @include media("<wide") {
-    width:768px
+    width:768px;
   }
   @include media("<large") {
-    width:512
+    width:512px;
   }
   @include media("<medium") {
     width: 100%;

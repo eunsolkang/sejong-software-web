@@ -21,6 +21,10 @@ export default handleActions({
     onSuccess: (state, action) => {
       const { data: post }= action.payload;
       return state.set('post', fromJS(post))
+                  .set('error', false)
+    },
+    onError : (state, action) => {
+      return state.set('error', true)
     }
   })
 }, initialState);

@@ -2,6 +2,10 @@
 
 .header{
   background: $oc-blue-6;
+  position: sticky;
+  top:0;
+  z-index: 100;
+  width:100%;
   .header-content{
     height : 5rem;
     width : 1400px;
@@ -19,12 +23,62 @@
     @include media("<medium"){
       padding-left: 1rem;
       padding-right: 1rem;
+      height : 4rem;
+      .button{
+        font-size: .75rem;
+      }
     }
-
     .brand{
       color:white;
-      font-size: 1.5rem;
-      font-weight: 600;
+      display: flex;
+      align-items: center;
+      img{
+        height: 3rem;
+        @include media("<medium"){
+          height: 2.5rem;
+          display: block;
+          padding-left: 0;
+
+        }
+        @include media(">medium"){
+          height: 2.5rem;
+          display: none;
+        }
+      }
+      .logo{
+        font-size: 1.5rem;
+        font-weight: 600;
+        @include media("<medium"){
+          display: none;
+        }
+        @include media("<wide"){
+
+        }
+      }
+
+    }
+    .nav{
+      padding-left: 5rem;
+      .board-nav{
+        font-weight: 400;
+        color:white;
+        margin-right: 3rem;
+        padding-top: .25rem;
+        padding-bottom: .35rem;
+        padding-left: .75rem;
+        padding-right: .75rem;
+        font-weight: 500;
+        border-radius: 4px;
+        &:hover{
+          color:$oc-blue-6;
+          background: white;
+          transition: color 0.4s ease 0s,background 0.4s ease 0s;
+        }
+      }
+      @include media("<medium"){
+        display: none;
+      }
+
     }
     .right{
       margin-left: auto;
