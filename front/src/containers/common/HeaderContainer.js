@@ -31,7 +31,9 @@ class HeaderContainer extends React.Component {
   handleRemove = () =>{
     console.log('remove!!');
     const { BaseActions } = this.props;
-    BaseActions.showModal('remove');
+    const check = true;
+    const modalName = 'remove'
+    BaseActions.showModal({modalName, check });
   }
   handleSidebarOpen = () =>{
     const { BaseActions, sidebarOpenProps } = this.props;

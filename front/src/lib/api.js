@@ -22,7 +22,7 @@ export const getPostList = ({page, boardIx, jwt}) => axios.get(`/api/post/?page=
   }
 );
 
-export const editPost = ({id, board_ix,  title, contents, jwt}) => axios.put(`api/post/${id}}`,{
+export const editPost = ({id, board_ix,  title, contents}, jwt) => axios.put(`api/post/${id}}`,{
     board_ix, title, contents
   },
   {headers: {
@@ -68,5 +68,23 @@ export const writeComment = ({post_ix, parent_ix, is_private, is_anon, contents,
 );
 
 export const getBoardName = ({boardIx}) => axios.get(`/api/board/${boardIx}`);
+export const addBoard = ({name, is_admin}, jwt) => axios.post(`/api/board`, {name, is_admin},
+  {headers: {
+          "x-access-token" : jwt
+  }
+});
 
+export const removeBoard = ({ix}, jwt) => axios.delete(`/api/board/${ix}`,
+  {headers: {
+          "x-access-token" : jwt
+  }
+});
+export const editBoard = ({ix, name}, jwt) => axios.put(`/api/board/${ix}`,
+  {
+    name
+  },
+  {headers: {
+          "x-access-token" : jwt
+  }
+});
 export const getBoardList = () => axios.get('/api/board');

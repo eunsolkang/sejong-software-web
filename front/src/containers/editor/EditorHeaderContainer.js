@@ -36,7 +36,7 @@ class EditorHeaderContainer extends React.Component {
     try{
       const { id } = queryString.parse(location.search);
       if(id){
-        await EditorActions.editPost({id, ...post});
+        await EditorActions.editPost({id, ...post}, jwt);
         history.push(`/post/${id}`);
         return;
       }

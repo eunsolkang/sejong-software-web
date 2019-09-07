@@ -16,16 +16,19 @@ export const closeSidebar = createAction(CLOSE_SIDEBAR);
 
 const initialState = Map({
   modal : Map({
-    remove : false
+    remove : false,
+    admin : false,
+    check : false,
   }),
-  sidebarOpenProps : false
+  sidebarOpenProps : false,
 
 });
 
 export default handleActions({
   [SHOW_MODAL] : (state, action) =>{
-    const { payload : modalName } = action;
-    return state.setIn(['modal', modalName], true);
+    const { modalName, check } = action.payload;
+    return state.setIn(['modal', modalName], true)
+                .setIn(['modal', 'check'], check);
   },
   [HIDE_MODAL] : (state, action) =>{
     const { payload : modalName } = action;
