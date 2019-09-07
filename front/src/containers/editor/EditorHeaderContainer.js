@@ -21,7 +21,7 @@ class EditorHeaderContainer extends React.Component {
     const { history } = this.props;
     history.goBack();
   }
-
+  componentDidUpdate
   handleSubmit = async() =>{
     const { title, markdown, EditorActions, history,
       location, jwt, commentCheck, privateCheck, boardIx} = this.props;

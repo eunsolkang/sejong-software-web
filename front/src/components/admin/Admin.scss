@@ -1,0 +1,66 @@
+@import "styles/utils";
+
+.list-container{
+  background: white;
+  width:1024px;
+  height: calc(100vh - 4rem);
+  margin: 0 auto;
+  padding-bottom: 3rem;
+
+  @include material-shadow(2, 0.5);
+
+  @include media("<wide") {
+    width:768px;
+  }
+  @include media("<large") {
+    width:512px;
+  }
+  @include media("<medium") {
+    width: 100%;
+  }
+  .title{
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid $oc-gray-3;
+    font-size: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background: white;
+  }
+  .name{
+    display: flex;
+    // align-items: center;
+    padding-top: .35rem;
+    padding-bottom: .75rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    background: $oc-gray-1;
+    border-bottom: 2px solid $oc-gray-2;
+    color:$oc-gray-7;
+    display: flex;
+    flex-direction: row;
+    .name-index{
+      flex:1;
+    }
+    .name-index-name{
+      flex:2;
+    }
+  }
+  .list-box{
+    .list{
+      padding-left: 2rem;
+      padding-right: 1rem;
+      display: flex;
+      flex-direction: row;
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid $oc-gray-2;
+      .list-index{
+        flex:1;
+      }
+      .list-index-name{
+        flex:2;
+      }
+    }
+  }
+}

@@ -19,6 +19,7 @@ const PageTemplate = ({children}) => {
         <main>
           {children}
         </main>
+        <Footer></Footer>
       </SidebarContainer>
 
     </div>

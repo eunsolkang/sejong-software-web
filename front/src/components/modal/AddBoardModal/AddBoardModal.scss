@@ -1,0 +1,32 @@
+@import 'styles/utils';
+
+.question {
+  background : white;
+  padding : 2rem;
+  padding-bottom: 1rem;
+  title {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+}
+.data{
+  display: flex;
+  flex-direction: column;
+  input{
+    &[type="checkbox"]{
+      margin-bottom: 2rem;
+      margin-top: 1rem;
+    }
+    margin-left: 2rem;
+    margin-right: 2rem;
+    width:200px;
+    padding-left: .25rem;
+    padding-right: .25rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    outline: none;
+  }
+
+}

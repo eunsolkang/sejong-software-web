@@ -36,6 +36,12 @@ const Header = ({postIx, onRemove, logged, onLogout, error, onSidebarOpen, board
       </div>
       <div className={cx('nav')}>
         {boardList}
+        <NavLink
+          className={cx('board-nav')}
+          to='./admin'
+        >
+          관리자
+        </NavLink>
       </div>
       <div className={cx('right')}>
         {

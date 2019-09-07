@@ -1,24 +1,23 @@
 @import "styles/utils";
 
 .header{
-  background: $oc-blue-6;
+  background: $main-color;
   position: sticky;
   top:0;
   z-index: 100;
   width:100%;
+  @include material-shadow(2, 0.5);
   .header-content{
     height : 5rem;
     width : 1400px;
     margin: 0 auto;
     padding-left: 3rem;
     padding-right: 3rem;
-
     display: flex;
     flex-direction: row;
     align-items: center;
-
     @include media("<wide"){
-      width:100%;
+      width : 100vw;
     }
     @include media("<medium"){
       padding-left: 1rem;
@@ -34,21 +33,20 @@
       align-items: center;
       img{
         height: 3rem;
-        @include media("<medium"){
+        @include media("<large"){
           height: 2.5rem;
           display: block;
           padding-left: 0;
 
         }
-        @include media(">medium"){
-          height: 2.5rem;
+        @include media(">large"){
           display: none;
         }
       }
       .logo{
         font-size: 1.5rem;
         font-weight: 600;
-        @include media("<medium"){
+        @include media("<=large"){
           display: none;
         }
         @include media("<wide"){
@@ -70,12 +68,12 @@
         font-weight: 500;
         border-radius: 4px;
         &:hover{
-          color:$oc-blue-6;
+          color: $main-color;
           background: white;
           transition: color 0.4s ease 0s,background 0.4s ease 0s;
         }
       }
-      @include media("<medium"){
+      @include media("<=large"){
         display: none;
       }
 
