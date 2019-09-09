@@ -44,6 +44,7 @@ class EditorPane extends React.Component {
     const { onChangeInput } = this.props;
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     const {name, type} = e.target;
+    console.log(e.target.type);
     onChangeInput({name, value});
   }
   handleChangeMarkdown = (doc) => {
@@ -64,22 +65,51 @@ class EditorPane extends React.Component {
       codeMirror.setCursor(cursor);
     }
   }
+
   render () {
     const { handleChange } = this;
     const { tags, title, markdown, commentCheck, privateCheck, onChangeMenu, boardPick, boards } = this.props;
     const boardList = boards && boards.map(
       (board) => {
-        const {name, is_admin, ix} = board.toJS();
-        return (
-          <a
-            onClick={onChangeMenu}
-            name={name}
-            key={ix}
-            id={ix}
-          >
-          {name}
-        </a>
-        )
+        const {name, is_admin, ix, parent_name} = board.toJS();
+        if(parent_name === 'etc'){
+          const navlist = boards && boards.map(
+            (boardlist) => {
+
+              if(name === boardlist.toJS().parent_name){
+                return (
+                  <a
+                    name={boardlist.toJS().name}
+                    id={boardlist.toJS().ix}
+                    onClick={onChangeMenu}
+                    exact
+                    className={cx('dropdown-content-right')}
+                    key={boardlist.toJS().ix}
+                  >
+                  {boardlist.toJS().name}
+                </a>
+                )
+              }
+            }
+          )
+          return (
+            <div className={cx('dropdown-content-index')}>
+              <div
+                className={cx('dropdown-content-box')}
+                name={name}
+                key={ix}
+                id={ix}
+              >
+              {name}
+              </div>
+              <div className={cx('dropdown-content-down')}>
+                {navlist}
+              </div>
+            </div>
+
+          )
+        }
+
       }
     );
     return (
@@ -106,10 +136,12 @@ class EditorPane extends React.Component {
           <label>
             <span>댓글 허용</span>
             <Toggle
-              defaultChecked={commentCheck}
+              name="commentCheck"
+              type="checkbox"
+              cheked={commentCheck}
+              defaultChecked="true"
               onChange={handleChange}
-
-              />
+            />
 
           </label>
         </div>
@@ -117,6 +149,9 @@ class EditorPane extends React.Component {
           <label>
             <span>비밀글</span>
             <Toggle
+              name="privateCheck"
+              type="checkbox"
+              cheked={privateCheck}
               defaultChecked={privateCheck}
               onChange={handleChange}
 

@@ -9,7 +9,7 @@ import * as LoginActions from 'store/modules/login';
 import { withRouter } from 'react-router-dom';
 import queryString from "query-string";
 
-class AskRemoveModalContainer extends React.Component {
+class AddBoardModalContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,4 +70,4 @@ export default connect(
     BoardActions : bindActionCreators(boardActions, dispatch),
     LoginActions : bindActionCreators(LoginActions, dispatch)
   })
-)(withRouter(AskRemoveModalContainer));
+)(withRouter(AddBoardModalContainer));

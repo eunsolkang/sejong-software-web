@@ -69,11 +69,11 @@ const Header = ({postIx, onRemove, logged, onLogout, error, onSidebarOpen, board
          </NavLink>
        </div>
        <div className={cx('right')}>
-         {
+         {/*
            postIx && logged && !error && [
              <Button key="edit" theme="outline" to={`/editor?id=${postIx}`}>수정</Button>,
              <Button key="remove" theme="outline" onClick={onRemove}>삭제</Button>
-           ]
+           ]*/
          }
          {logged ? <Button theme="outline" onClick={onLogout}>로그아웃</Button> : <Button theme="outline" to="/login">로그인</Button>}
          {logged && <Button theme="outline" to="/editor">새 포스트</Button>}

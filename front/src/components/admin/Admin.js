@@ -8,23 +8,53 @@ import moment from 'moment';
 
 const cx = classNames.bind(styles);
 
-const Admin = ({boards, onAdd, onRemove, onUpdate}) => {
+const Admin = ({boards, onAdd, onRemove, onUpdate, onBoard}) => {
+
   const boardList = boards && boards.map(
     (board) => {
-      const {name, is_admin, ix, createdAt} = board.toJS();
+      const {name, is_admin, ix, createdAt ,parent_name} = board.toJS();
+      if(parent_name === 'etc'){
+        const navlist = boards && boards.map(
+          (boardlist) => {
+            if(name === boardlist.toJS().parent_name){
+              return (
+                <div className={cx('list')} key={boardlist.toJS().ix}>
+                  <div className={cx('list-index')}>ㄴ</div>
+                  <div className={cx('list-index', 'list-index-name')}>{boardlist.toJS().name}</div>
+                  <div className={cx('list-index')}>{moment(boardlist.toJS().createdAt).format('ll')}</div>
+                  <div className={cx('list-index')}>{boardlist.toJS().is_admin}</div>
+                  <div className={cx('list-index','list-index-btn')}>
+                    <Button theme="red" onClick={onRemove} id={ix}>Delete</Button>
+                    <Button theme="gray" onClick={onUpdate} id={ix}>Update</Button>
+                  </div>
+                </div>
+              )
+            }
+          }
+        )
+
       return (
-        <div className={cx('list')} key={ix}>
-          <div className={cx('list-index')}>{ix}</div>
-          <div className={cx('list-index', 'list-index-name')}>{name}</div>
-          <div className={cx('list-index')}>{moment(createdAt).format('ll')}</div>
-          <div className={cx('list-index')}>{is_admin}</div>
-          <div className={cx('list-index','list-index-btn')}>
-            <Button theme="red" onClick={onRemove} id={ix}>Delete</Button>
-            <Button theme="gray" onClick={onUpdate} id={ix}>Update</Button>
+        <div>
+          <div className={cx('list')} key={ix}>
+            <div className={cx('list-index')}>{ix}</div>
+            <div className={cx('list-index', 'list-index-name', 'group')}>{name}</div>
+            <div className={cx('list-index')}>{moment(createdAt).format('ll')}</div>
+            <div className={cx('list-index')}>{is_admin}</div>
+            <div className={cx('list-index','list-index-btn')}>
+              <Button theme="red" onClick={onRemove} id={ix}>Delete</Button>
+              <Button theme="gray" onClick={onUpdate} id={ix}>Update</Button>
+            </div>
+
           </div>
+          {
+            navlist
+          }
         </div>
+
+
       )
     }
+  }
   );
 
   return (
@@ -34,7 +64,11 @@ const Admin = ({boards, onAdd, onRemove, onUpdate}) => {
         <div>
           페이지 리스트
         </div>
-        <Button theme="gray" onClick={onAdd}>게시판 추가</Button>
+        <div>
+          <Button theme="gray" onClick={onBoard}>게시판 추가</Button>
+          <Button theme="gray" onClick={onAdd}>그룹 추가</Button>
+        </div>
+
 
 
       </div>

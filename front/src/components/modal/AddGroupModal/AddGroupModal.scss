@@ -1,0 +1,95 @@
+@import 'styles/utils';
+
+.question {
+  padding-top: 1rem !important;
+  background : white;
+
+  width:200px;
+}
+.data{
+  // padding-top: 1rem;
+  padding-bottom: .5rem;
+  display: flex;
+  flex-direction: column;
+  // padding-bottom: 1rem;
+  .dropdown {
+    padding-left: 1rem;
+    .drop-btn {
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+      // border-radius: 4px;
+      margin-right: 2rem;
+      padding-top: .25rem;
+      padding-bottom: .35rem;
+      padding-left: .75rem;
+      padding-right: .75rem;
+      background: none;
+      font-size: 16px;
+
+      color:black;
+      border: none;
+      &:hover{
+
+      }
+    }
+    &:hover{
+      transition: color 0.4s ease 0s,background 0.4s ease 0s;
+      .drop-btn{
+        background: white !important;
+        // color:$main-color;
+
+
+      }
+      .dropdown-content{display: block;}
+      .drop-btn {background-color: none}
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      z-index: 100;
+      background-color: white;
+      min-width: 160px;
+      @include material-shadow(2, 0.5);
+      // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      margin-top : 0;
+      &.hover{
+
+      }
+      .dropdown-content-index{
+        color: black;
+        font-weight: 500;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+
+        &:hover{
+
+          background-color: none;
+          color:$oc-blue-6;
+        }
+      }
+
+    }
+
+
+  }
+  input{
+    &[type="checkbox"]{
+      margin-bottom: 2rem;
+      margin-top: 1rem;
+    }
+    margin-left: 2rem;
+    margin-right: 2rem;
+    width:200px;
+    padding-left: .25rem;
+    padding-right: .25rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    outline: none;
+  }
+
+}

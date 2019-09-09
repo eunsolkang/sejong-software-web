@@ -68,7 +68,7 @@ export const writeComment = ({post_ix, parent_ix, is_private, is_anon, contents,
 );
 
 export const getBoardName = ({boardIx}) => axios.get(`/api/board/${boardIx}`);
-export const addBoard = ({name, is_admin}, jwt) => axios.post(`/api/board`, {name, is_admin},
+export const addBoard = ({name, is_admin, parent_name}, jwt) => axios.post(`/api/board`, {name, is_admin, parent_name},
   {headers: {
           "x-access-token" : jwt
   }

@@ -1,9 +1,10 @@
 @import "styles/utils";
 
 .list-container{
+
   background: white;
   width:1024px;
-  height: calc(100vh - 4rem);
+  // height: calc(100vh - 4rem);
   margin: 0 auto;
   padding-bottom: 3rem;
 
@@ -51,6 +52,7 @@
     }
   }
   .list-box{
+
     .list{
       padding-left: 2rem;
       padding-right: 1rem;
@@ -64,6 +66,9 @@
       }
       .list-index-name{
         flex:2;
+      }
+      .group{
+        font-weight: 500 !important;
       }
       .list-index-btn{
         display: flex;

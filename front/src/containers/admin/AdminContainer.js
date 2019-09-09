@@ -28,10 +28,16 @@ class AdminContainer extends React.Component {
     history.push(`?ix=${e.currentTarget.id}`);
     BaseActions.showModal({modalName, check});
   }
-  handleAddBoard = () =>{
+  handleAddGroup= () =>{
     const { BaseActions } = this.props;
     const check = false;
     const modalName = 'admin'
+    BaseActions.showModal({modalName, check });
+  }
+  handleAddBoard= () =>{
+    const { BaseActions } = this.props;
+    const check = false;
+    const modalName = 'group'
     BaseActions.showModal({modalName, check });
   }
   handleRemove = (e) => {
@@ -48,13 +54,14 @@ class AdminContainer extends React.Component {
     }
   }
   render () {
-    const { handleAddBoard, handleRemove, handleUpdate, handleEdit  } = this
+    const { handleAddBoard, handleRemove, handleUpdate, handleEdit, handleAddGroup  } = this
     const { boards } = this.props;
 
 
     return (
       <Admin
-        onAdd={handleAddBoard}
+        onAdd={handleAddGroup}
+        onBoard={handleAddBoard}
         boards={boards}
         onRemove={handleRemove}
         onUpdate={handleEdit}
