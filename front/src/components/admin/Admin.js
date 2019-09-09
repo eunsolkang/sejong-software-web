@@ -18,7 +18,7 @@ const Admin = ({boards, onAdd, onRemove, onUpdate}) => {
           <div className={cx('list-index', 'list-index-name')}>{name}</div>
           <div className={cx('list-index')}>{moment(createdAt).format('ll')}</div>
           <div className={cx('list-index')}>{is_admin}</div>
-          <div className={cx('list-index')}>
+          <div className={cx('list-index','list-index-btn')}>
             <Button theme="red" onClick={onRemove} id={ix}>Delete</Button>
             <Button theme="gray" onClick={onUpdate} id={ix}>Update</Button>
           </div>

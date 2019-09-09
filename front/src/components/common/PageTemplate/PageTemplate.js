@@ -11,19 +11,33 @@ import Footer from 'components/common/Footer'
 
 const cx = classNames.bind(styles);
 
-const PageTemplate = ({children}) => {
-  return (
-    <div className={cx('page-template')}>
-      <SidebarContainer>
-        <HeaderContainer/>
-        <main>
-          {children}
-        </main>
-        <Footer></Footer>
-      </SidebarContainer>
 
-    </div>
-  )
+
+class PageTemplate extends React.Component {
+  componentDidMount() {
+       window.addEventListener('scroll', this.handleScroll);
+  }
+  handleScroll(e){
+    console.log('scroll');
+  }
+  render () {
+
+    const { children } = this.props;
+    return (
+      <div className={cx('page-template')}>
+        <SidebarContainer>
+          <HeaderContainer/>
+          <main>
+            {children}
+          </main>
+          <Footer></Footer>
+        </SidebarContainer>
+
+      </div>
+    )
+  }
 }
+
+
 
 export default PageTemplate

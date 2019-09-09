@@ -2,6 +2,10 @@
 
 $breakpoints : (small: 320px, medium: 768px, large: 1024px, wide:1400px);
 
-$main-color : rgb(246, 128, 34);
+$main-color : $oc-blue-6;
 
-$hover-color : #F46413
+$hover-color : $oc-blue-5;
+
+$header-color : $oc-blue-6;
+
+$font-color : white;

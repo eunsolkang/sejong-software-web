@@ -13,6 +13,12 @@ import { bindActionCreators } from 'redux';
 
 
 class HeaderContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fixed : false
+    };
+  }
 
   handleLogoutClick = async() =>{
     const {logged, LoginActions, jwt } = this.props;
@@ -42,11 +48,13 @@ class HeaderContainer extends React.Component {
 
   render () {
     const { handleRemove, handleLogoutClick, handleSidebarOpen } = this
+    const { fixed } = this.state
     const { match, logged, error, boards } = this.props;
     const { id } = match.params;
 
     return (
       <Header
+        fixed={fixed}
         postIx={id}
         onRemove={handleRemove}
         onLogout={handleLogoutClick}

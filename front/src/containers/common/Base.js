@@ -24,9 +24,8 @@ class Base extends React.Component {
     }
   }
   componentDidMount(){
-    this.initialize()
+      this.initialize();
   }
-
   render () {
     return (
       <div>

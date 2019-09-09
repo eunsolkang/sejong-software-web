@@ -11,14 +11,22 @@
   cursor: pointer;
   user-select: none;
   display: inline-flex;
-
+  &.none{
+    background: none;
+    &:hover{
+      background: none;
+    }
+    &:active{
+      background: none;
+    }
+  }
   &.default{
     background: $main-color;
     &:hover{
       background: $hover-color;
     }
     &:active{
-      background: $main-color;
+      color: $oc-blue-5;
     }
   }
   &.red{
@@ -42,16 +50,19 @@
   }
 
   &.outline{
-    border: 2px solid white;
+    border: 0px solid black;
     border-radius: 2px;
+    font-weight: 500;
+    color: black;
     &:hover{
-      background: white;
-      color:$hover-color;
-      transition: color 0.2s ease 0s,background 0.2s ease 0s;
+      color:$oc-blue-7;
+      // font-weight: 600;
+      transition: color 0.2s ease 0s, font-weight 0.2s ease 0s;
+
     }
     &:active{
-      background: rgba(255, 255, 255, 0.85);
-      border: 2px solid rgba(255, 255, 255, 0.85);
+      color: $oc-blue-8;
+
     }
   }
   &:hover{

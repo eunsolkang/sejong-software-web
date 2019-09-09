@@ -16,7 +16,7 @@
       position: absolute;
       transform: translate(-50%);
       cursor: col-resize;
-      background: black;
+      background: none;
     }
     @include media("<medium"){
       .editor{

@@ -39,6 +39,12 @@ class ListContainer extends React.Component {
     const { handlePageUp } = this;
     history.push(handlePageUp(page+1))
   }
+  componentDidMount(){
+    this.initialize()
+  }
+   handleScroll(){
+     console.log('왜안됨 시발');
+   }
   handlePageDown = (page) => {
     const { boardIxPath } = this.props;
     return `?page=${page}&board_ix=${boardIxPath}`;

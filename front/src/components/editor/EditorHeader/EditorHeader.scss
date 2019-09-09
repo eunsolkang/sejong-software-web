@@ -1,7 +1,12 @@
 @import "styles/utils";
 
 .editor-header{
-  background: $oc-blue-6;
+
+  background: white;
+  z-index: 100;
+  // border-bottom: 2px solid black;
+  @include material-shadow(2, 0.5);
+
   height: 4rem;
   padding-left: 1rem;
   padding-right: 1rem;

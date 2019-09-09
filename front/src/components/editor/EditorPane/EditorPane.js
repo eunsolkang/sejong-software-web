@@ -15,6 +15,8 @@ import 'codemirror/mode/shell/shell';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css'
 
+import Toggle from 'react-toggle'
+
 const cx = classNames.bind(styles);
 
 
@@ -29,7 +31,7 @@ class EditorPane extends React.Component {
   initializeEditor = () =>{
     this.codemirror = Codemirror(this.editor, {
       mode : 'markdown',
-      theme : 'monokai',
+      theme : 'minimal-mistakes-jekyll',
       lineNumbers: true,
       lineWrapping: true
     });
@@ -83,28 +85,11 @@ class EditorPane extends React.Component {
     return (
       <div className={cx('editor-pane')}>
         <div className={cx('title-box')}>
-          <div className={cx('option-box')}>
-            <div className={cx('dropdown')}>
-              <button className={cx('drop-btn')}>{boardPick}</button>
-              <div className={cx('dropdown-content')}>
-                {boardList}
-              </div>
-            </div>
-            <div className={cx('comment-able')}>
-              댓글 작성 허용
-              <input type="checkbox"
-                     name="commentCheck"
-                     checked={commentCheck}
-                     onChange={handleChange}
-              />
-            </div>
-            <div className={cx('comment-able')}>
-              비밀글
-              <input type="checkbox"
-                     name="privateCheck"
-                     checked={privateCheck}
-                     onChange={handleChange}
-              />
+
+          <div className={cx('dropdown')}>
+            <button className={cx('drop-btn')}>{boardPick}</button>
+            <div className={cx('dropdown-content')}>
+              {boardList}
             </div>
           </div>
           <input
@@ -116,15 +101,29 @@ class EditorPane extends React.Component {
           />
         </div>
       <div className={cx('code-editor')} ref={ref => this.editor=ref}></div>
-        <div className={cx('tags')}>
-          <div className={cx('description')}>테그</div>
-          <input
-            placeholder="태그를 입력하세요 (쉼표로 구분)"
-            name="tags"
-            value={tags}
-            onChange={handleChange}
-          />
+      <div className={cx('option-box')}>
+        <div className={cx('comment-able')}>
+          <label>
+            <span>댓글 허용</span>
+            <Toggle
+              defaultChecked={commentCheck}
+              onChange={handleChange}
+
+              />
+
+          </label>
         </div>
+        <div className={cx('comment-able')}>
+          <label>
+            <span>비밀글</span>
+            <Toggle
+              defaultChecked={privateCheck}
+              onChange={handleChange}
+
+              />
+          </label>
+        </div>
+      </div>
       </div>
     )
   }

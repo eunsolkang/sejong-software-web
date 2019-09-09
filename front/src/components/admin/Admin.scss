@@ -65,6 +65,15 @@
       .list-index-name{
         flex:2;
       }
+      .list-index-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        & + & {
+          margin: .2rem;
+        }
+      }
     }
   }
 }

@@ -8,8 +8,11 @@ const cx = classNames.bind(styles);
 
 const ListWapper = ({children}) => {
   return (
-    <div className={cx('list-wapper')}>
-      {children}
+    <div className={cx('list-box')}>
+      <div className={cx('list-wapper')} >
+        {children}
+      </div>
+
     </div>
   )
 }
