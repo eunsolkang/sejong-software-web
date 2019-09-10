@@ -8,12 +8,33 @@
   @include material-shadow(2, 0.5);
 
   height: 4rem;
-  padding-left: 1rem;
+  padding-left: .5rem;
   padding-right: 1rem;
   display: flex;
   align-items: center;
 
   .submit{
     margin-left: auto;
+    .button{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    img{
+      margin-left: 2.5px;
+      height: 25px;
+      margin-bottom: 2.5px;
+    }
+  }
+  .back{
+    .button{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    img{
+      margin-right: -5px;
+      height: 30px;
+    }
   }
 }

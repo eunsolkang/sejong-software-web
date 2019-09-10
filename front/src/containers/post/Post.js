@@ -4,6 +4,7 @@ import PostInfo from 'components/post/PostInfo';
 import PostBody from 'components/post/PostBody';
 import * as postActions from 'store/modules/post';
 import * as LoginActions from 'store/modules/login';
+import * as baseActions from 'store/modules/base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CommentListContainer from 'containers/post/CommentListContainer'
@@ -32,6 +33,13 @@ class Post extends React.Component {
       console.log(e);
     }
   }
+  handleRemove = () =>{
+    console.log('remove!!');
+    const { BaseActions } = this.props;
+    const check = true;
+    const modalName = 'remove'
+    BaseActions.showModal({modalName, check });
+  }
   componentDidMount(){
     this.initialize();
   }
@@ -41,11 +49,21 @@ class Post extends React.Component {
     if(loading) return null;
 
     const { title, contents, createdAt, is_comment } = post.toJS();
-    const { userName, error, history } = this.props;
+    const { userName, error, history, logged, match } = this.props;
+    const {handleRemove } = this;
+    const { id } = match.params;
     if (jwt){
       return (
         <div>
-          <PostInfo title={title} publishedDate={createdAt} userName={userName} error={error}/>
+          <PostInfo
+            title={title}
+            publishedDate={createdAt}
+            userName={userName}
+            error={error}
+            onRemove={handleRemove}
+            logged={logged}
+            postIx={id}
+          />
           <PostBody body={contents} error={error}/>
           {
             is_comment && [
@@ -73,10 +91,12 @@ export default connect(
     jwt : state.login.get('jwt'),
     loading: state.pender.pending['post/GET_POST'],
     userName : state.login.get('userName'),
-    error : state.post.get('error')
+    error : state.post.get('error'),
+    logged : state.login.get('logged'),
   }),
   (dispatch) => ({
     postActions: bindActionCreators(postActions, dispatch),
-    LoginActions: bindActionCreators(LoginActions, dispatch)
+    LoginActions: bindActionCreators(LoginActions, dispatch),
+    BaseActions: bindActionCreators(baseActions, dispatch)
   })
 )(withRouter(Post));

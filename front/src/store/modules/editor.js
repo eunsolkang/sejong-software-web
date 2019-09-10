@@ -24,7 +24,7 @@ const initialState = Map({
   tags: '',
   postId : null,
   privateCheck : false,
-  commentCheck : false,
+  commentCheck : true,
   boardIx : false
 })
 

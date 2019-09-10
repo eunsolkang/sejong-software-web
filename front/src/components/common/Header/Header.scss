@@ -37,6 +37,10 @@
         color:white;
         display: flex;
         align-items: center;
+        @include media("<large"){
+          padding-left: 0;
+
+        }
         .menu-ic{
           height: 3rem;
           @include media("<large"){
@@ -77,7 +81,7 @@
 
       }
       .nav{
-        padding-left: 5rem;
+        padding-left: 2rem;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -116,6 +120,9 @@
             border: none;
             &:hover{
 
+            }
+            img{
+              height: 20px;
             }
           }
           &:hover{
@@ -165,8 +172,27 @@
           display: none;
         }
 
+
+      }
+      .search-input{
+        height: 4rem;
+        width:70vw;
+        outline: none;
+        border: none;
+        font-size: 1.1rem;
+        padding-left: 2rem;
       }
       .right{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        img{
+          margin-left: -5px;
+          margin-top: 2.5px;
+
+          height: 25px;
+        }
+
         margin-left: auto;
       }
     }

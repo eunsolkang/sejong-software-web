@@ -12,6 +12,23 @@
     width:1024px;
     padding: 1rem;
     color:white;
+    .userName-box{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .controls{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .del{
+          height: 32px;
+        }
+        .edit{
+          margin-right: -10px;
+          height: 25px;
+        }
+      }
+    }
     h1{
       font-weight: 300;
       font-size: 3rem;

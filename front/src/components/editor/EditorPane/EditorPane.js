@@ -139,7 +139,7 @@ class EditorPane extends React.Component {
               name="commentCheck"
               type="checkbox"
               cheked={commentCheck}
-              defaultChecked="true"
+              defaultChecked={commentCheck}
               onChange={handleChange}
             />
 

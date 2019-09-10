@@ -16,7 +16,7 @@ class HeaderContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fixed : false
+      isSearch : false
     };
   }
 
@@ -34,30 +34,36 @@ class HeaderContainer extends React.Component {
     return;
   }
 
-  handleRemove = () =>{
-    console.log('remove!!');
-    const { BaseActions } = this.props;
-    const check = true;
-    const modalName = 'remove'
-    BaseActions.showModal({modalName, check });
-  }
+
   handleSidebarOpen = () =>{
     const { BaseActions, sidebarOpenProps } = this.props;
     sidebarOpenProps ? BaseActions.closeSidebar() : BaseActions.openSidebar()
   }
+  handleSearchToggle = () => {
+    const { isSearch } = this.state
+    this.setState({
+      isSearch : !isSearch
+    })
+
+  }
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    const { BaseActions } = this.props;
+    BaseActions.changeInput({name, value});
+  }
 
   render () {
-    const { handleRemove, handleLogoutClick, handleSidebarOpen } = this
-    const { fixed } = this.state
+    const { handleRemove, handleLogoutClick, handleSidebarOpen, handleSearchToggle, handleChange } = this
+    const { isSearch } = this.state
     const { match, logged, error, boards } = this.props;
     const { id } = match.params;
 
     return (
       <Header
-        fixed={fixed}
-        postIx={id}
-        onRemove={handleRemove}
+        isSearch={isSearch}
         onLogout={handleLogoutClick}
+        onSearchToggle={handleSearchToggle}
+        onChange={handleChange}
         logged={logged}
         error={error}
         onSidebarOpen={handleSidebarOpen}

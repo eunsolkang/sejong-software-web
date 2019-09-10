@@ -73,13 +73,13 @@ class ListContainer extends React.Component {
     return true;
   }
   render () {
-    const { loading, posts, page, count } = this.props;
+    const { loading, posts, page, count, search } = this.props;
     const { handleNextClick, handlePrevClick} = this;
     if (loading ) return null;
 
     return (
       <div>
-        <PostList posts={posts}/>
+        <PostList posts={posts} search={search}/>
         <Paginaction page={page} onNextClick={handleNextClick} onPrevClick={handlePrevClick} count={count}/>
       </div>
     )
@@ -91,7 +91,8 @@ export default connect(
     posts : state.list.get('posts'),
     loading : state.pender.pending['list/GET_POST_LIST'],
     jwt : state.login.get('jwt'),
-    count : state.list.get('count')
+    count : state.list.get('count'),
+    search : state.base.get('search')
   }),
   (dispatch) => ({
     ListActions : bindActionCreators(listActions, dispatch)

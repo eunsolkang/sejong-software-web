@@ -22,8 +22,11 @@ const PostItem = ({title, ix, createdAt, isPrivate, userName}) => {
       </div>
   )
 }
-const PostList = ({posts}) => {
-  const postList = posts.map(
+const PostList = ({posts, search}) => {
+  let filteredList =  posts.filter(
+    post => post.toJS().title.indexOf(search.trim()) !== -1
+  );
+  const postList = filteredList && filteredList.map(
     (post) => {
       const {ix, title, createdAt, is_private, user_name} = post.toJS();
       return (

@@ -27,3 +27,27 @@
     }
   }
 }
+footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $oc-gray-1;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+footer .footer-logo-box{
+  padding-left: 6rem;
+}
+footer .footer-logo-box .footer-logo{
+  height: 60px;
+}
+footer .footer-info-box{
+  padding-right: 6rem;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+footer .footer-info-box .footer-info{
+  padding-bottom: .25rem;
+}
