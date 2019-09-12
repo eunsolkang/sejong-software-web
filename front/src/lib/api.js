@@ -8,11 +8,11 @@ export const writePost = ({board_ix, title, contents, is_comment, is_private, is
           "x-access-token" : jwt
   }
 });
-export const getPost = ({id, jwt}) => axios.get(`/api/post/${id}`,
+export const getPost = ({id, jwt}) => axios.get(`/api/post/${id}`, jwt ?
   {headers: {
           "x-access-token" : jwt
         }
-  }
+  } : null
 );
 
 export const getPostList = ({page, boardIx, jwt}) => axios.get(`/api/post/?page=${page}&board_ix=${boardIx}`,

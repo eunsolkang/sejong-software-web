@@ -69,7 +69,7 @@ class SidebarContents extends React.Component {
     return (
       <div className={cx('sidebar-contents')}>
         <NavLink to='/' className={cx('title')}>
-          SEJONG
+          SOYUNG
         </NavLink>
         {boardList}
       </div>

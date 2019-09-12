@@ -18,8 +18,12 @@ class Post extends React.Component {
   initialize = async ()=>{
     const {postActions,LoginActions , id, jwt} = this.props;
     try{
-      if (jwt !== ''){
-        await postActions.getPost({id, jwt});
+        if(jwt) {
+          await postActions.getPost({id, jwt});
+        }
+        else {
+          await postActions.getPost({id});
+        }
         const {post} = this.props;
         const { handleError } = this
         const { user_ix } = post.toJS();
@@ -28,7 +32,6 @@ class Post extends React.Component {
         }catch(e){
           console.log(e);
         }
-      }
     }catch(e){
       console.log(e);
     }
@@ -48,11 +51,12 @@ class Post extends React.Component {
     const { loading, post, jwt} = this.props;
     if(loading) return null;
 
-    const { title, contents, createdAt, is_comment } = post.toJS();
+    const { title, contents, createdAt, is_comment, board_ix } = post.toJS();
     const { userName, error, history, logged, match } = this.props;
     const {handleRemove } = this;
     const { id } = match.params;
-    if (jwt){
+    console.log(post.toJS());
+    if (jwt || (board_ix === 13 || board_ix === 14 || board_ix === 15 || board_ix === 16 || board_ix == 10 || board_ix === 11)){
       return (
         <div>
           <PostInfo

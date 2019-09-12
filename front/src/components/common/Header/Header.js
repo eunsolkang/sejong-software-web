@@ -57,7 +57,7 @@ const Header = ({postIx, onRemove, logged, onLogout, error, onSidebarOpen, board
     <div className={cx('header-box')}>
       <div className={cx('header-content')}>
        <div className={cx('brand')}>
-         <NavLink to='/' className={cx('text')} >SEJONG</NavLink>
+         <NavLink to='/' className={cx('text')} >SOYUNG</NavLink>
 
          <img onClick={onSidebarOpen} src={ic_menu} className={cx('menu-ic')}/>
        </div>
@@ -80,7 +80,7 @@ const Header = ({postIx, onRemove, logged, onLogout, error, onSidebarOpen, board
 
        }
        <div className={cx('right')}>
-         
+
          {!isSearch && (logged ? <Button theme="outline" onClick={onLogout}>로그아웃</Button> : <Button theme="outline" to="/login">로그인</Button>)}
          {!isSearch && logged && <Button theme="outline" to="/editor">새 포스트</Button>}
          <Button theme="outline" onClick={onSearchToggle}><img src={ic_search}></img></Button>
