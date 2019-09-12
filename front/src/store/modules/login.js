@@ -30,7 +30,8 @@ const initialState = Map({
   logged : false,
   jwt : '',
   commentName : '',
-  userName : ''
+  userName : '',
+  power : false
 
 });
 
@@ -46,10 +47,11 @@ export default handleActions({
   ...pender({
     type: CHECK_LOGIN,
     onSuccess: (state, action) =>{
-      const { name, id, pw }= action.payload.data.info;
+      const { name, id, pw, is_admin }= action.payload.data.info;
       return state.set('commentName', name)
                   .setIn(['autoBox', 'id'], id)
-                  .setIn(['autoBox', 'pw'], pw);
+                  .setIn(['autoBox', 'pw'], pw)
+                  .set('power', is_admin);
     }
   }),
   ...pender({

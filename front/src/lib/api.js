@@ -1,8 +1,8 @@
 import axios from 'axios';
 import queryString from 'query-string';
 
-export const writePost = ({board_ix, title, contents, is_comment, is_private}, jwt) => axios.post('/api/post', {
-    board_ix, title, contents, is_comment, is_private
+export const writePost = ({board_ix, title, contents, is_comment, is_private, is_anon}, jwt) => axios.post('/api/post', {
+    board_ix, title, contents, is_comment, is_private, is_anon
   },
   {headers: {
           "x-access-token" : jwt

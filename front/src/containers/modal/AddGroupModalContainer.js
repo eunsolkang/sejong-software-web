@@ -15,8 +15,10 @@ class AddGroupModalContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ''
+      name: '',
+      admin : true
     };
+    this.handleChangeInput = this.handleChangeInput.bind(this);
   }
   handleCancel = () =>{
     console.log('cancel');
@@ -25,8 +27,19 @@ class AddGroupModalContainer extends React.Component {
   }
 
   handleChangeInput = (e) => {
-    const { name, value } = e.target;
-    this.setState({name : value});
+    const { name } = e.target;
+    const value = (e.target.type === 'checkbox') ? e.target.checked : e.target.value;
+
+    if(e.target.type === 'checkbox'){
+      this.setState({
+        admin : value
+      })
+    }
+    else{
+      this.setState({
+        name : value
+      })
+    }
   }
   handleChangeMenu = (e) => {
     const { EditorActions } = this.props;
@@ -41,7 +54,7 @@ class AddGroupModalContainer extends React.Component {
   handleConfirm = async () =>{
     const { BaseActions, BoardActions, jwt, check, location } = this.props;
     const {name} = this.state;
-    const {boardName} = this.state;
+    const {boardName, admin} = this.state;
     if (check) {
       const { ix } = queryString.parse(location.search)
       try {
@@ -54,7 +67,7 @@ class AddGroupModalContainer extends React.Component {
     else{
       try {
 
-        await BoardActions.addBoard({name, is_admin : false, parent_name:boardName}, jwt);
+        await BoardActions.addBoard({name, parent_name:boardName, is_admin : admin}, jwt);
         BaseActions.hideModal('group');
       } catch(e){
         console.log(e);
@@ -65,10 +78,9 @@ class AddGroupModalContainer extends React.Component {
   render () {
     const { visible, check, boards } = this.props;
     const { handleCancel, handleConfirm,handleChangeInput, handleChangeMenu } = this;
-    const { boardName } =this.state
-
+    const { boardName, admin } = this.state
     return (
-      <AddGroupModal boardName={boardName} boards={boards} type={check} visible={visible} onCancel={handleCancel} onConfirm={handleConfirm} onChange={handleChangeInput} onChangeMenu={handleChangeMenu} />
+      <AddGroupModal boardName={boardName} boards={boards} type={check} visible={visible} onCancel={handleCancel} onConfirm={handleConfirm} onChange={handleChangeInput} onChangeMenu={handleChangeMenu} admin={admin}/>
     )
   }
 }

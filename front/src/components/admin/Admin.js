@@ -22,10 +22,10 @@ const Admin = ({boards, onAdd, onRemove, onUpdate, onBoard}) => {
                   <div className={cx('list-index')}>ㄴ</div>
                   <div className={cx('list-index', 'list-index-name')}>{boardlist.toJS().name}</div>
                   <div className={cx('list-index')}>{moment(boardlist.toJS().createdAt).format('ll')}</div>
-                  <div className={cx('list-index')}>{boardlist.toJS().is_admin}</div>
+                  <div className={cx('list-index')}>{boardlist.toJS().is_admin ? "어드민" : "일반"}</div>
                   <div className={cx('list-index','list-index-btn')}>
-                    <Button theme="red" onClick={onRemove} id={ix}>Delete</Button>
-                    <Button theme="gray" onClick={onUpdate} id={ix}>Update</Button>
+                    <Button theme="red" onClick={onRemove} id={boardlist.toJS().ix}>Delete</Button>
+                    <Button theme="gray" onClick={onUpdate} id={boardlist.toJS().ix}>Update</Button>
                   </div>
                 </div>
               )

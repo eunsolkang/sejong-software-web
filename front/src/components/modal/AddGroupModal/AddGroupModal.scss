@@ -6,6 +6,16 @@
 
   width:200px;
 }
+label{
+  span{
+    margin-right: 1rem;
+  }
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .data{
   // padding-top: 1rem;
   padding-bottom: .5rem;

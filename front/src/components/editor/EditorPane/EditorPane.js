@@ -68,7 +68,7 @@ class EditorPane extends React.Component {
 
   render () {
     const { handleChange } = this;
-    const { tags, title, markdown, commentCheck, privateCheck, onChangeMenu, boardPick, boards } = this.props;
+    const { tags, title, markdown, commentCheck, privateCheck, anonCheck, onChangeMenu, boardPick, boards } = this.props;
     const boardList = boards && boards.map(
       (board) => {
         const {name, is_admin, ix, parent_name} = board.toJS();
@@ -153,6 +153,19 @@ class EditorPane extends React.Component {
               type="checkbox"
               cheked={privateCheck}
               defaultChecked={privateCheck}
+              onChange={handleChange}
+
+              />
+          </label>
+        </div>
+        <div className={cx('comment-able')}>
+          <label>
+            <span>익명</span>
+            <Toggle
+              name="anonCheck"
+              type="checkbox"
+              cheked={anonCheck}
+              defaultChecked={anonCheck}
               onChange={handleChange}
 
               />

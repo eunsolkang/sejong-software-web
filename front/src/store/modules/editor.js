@@ -25,6 +25,7 @@ const initialState = Map({
   postId : null,
   privateCheck : false,
   commentCheck : true,
+  anonCheck : false,
   boardIx : false
 })
 

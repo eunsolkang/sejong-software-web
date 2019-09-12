@@ -4,10 +4,11 @@ import styles from './AddGroupModal.scss';
 import classNames from 'classnames/bind';
 import ModalWrapper from 'components/modal/ModalWrapper';
 import Button from 'components/common/Button'
+import Toggle from 'react-toggle'
 
 const cx = classNames.bind(styles)
 
-const AddGroupModal = ({visible, onConfirm, onCancel, onChange, type, onChangeMenu, boards, boardName="게시판선택"}) => {
+const AddGroupModal = ({visible, onConfirm, onCancel, onChange, type, onChangeMenu, boards, boardName="게시판선택", admin}) => {
   const boardList = boards && boards.map(
 
     (board) => {
@@ -39,6 +40,17 @@ const AddGroupModal = ({visible, onConfirm, onCancel, onChange, type, onChangeMe
           </div>
         </div>
       </div>
+      <label>
+        <span>글쓰기 허용</span>
+        <Toggle
+          name="admin"
+          type="checkbox"
+          cheked={admin}
+          defaultChecked={admin}
+          onChange={onChange}
+        />
+
+      </label>
       <div className={cx('data')}>
         <input type="text" placeholder="이름입력" onChange={onChange} name="boardName"/>
       </div>
