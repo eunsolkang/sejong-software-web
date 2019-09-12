@@ -29,7 +29,8 @@ export default handleActions({
 
     },
     onError : (state, action) => {
-      return state.setIn(['registerBox', 'name'], '')
+      return state.setIn(['registerBox', 'error'], true)
+                  .setIn(['registerBox', 'name'], '')
                   .setIn(['registerBox', 'id'], '')
                   .setIn(['registerBox', 'pw'], '');
     }

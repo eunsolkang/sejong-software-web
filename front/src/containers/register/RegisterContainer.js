@@ -49,7 +49,7 @@ class RegisterContainer extends React.Component {
     const { error, pw, id, name}= this.props;
     return (
       <Register
-        onRegister={handleRegister} onNameChange={handleNameChange} onIdChange={handleIdChange} onPwChange={handlePwChange} onKeyPress={handleKeyPress} name={name} userid={id} password={pw}
+        onRegister={handleRegister} onNameChange={handleNameChange} onIdChange={handleIdChange} onPwChange={handlePwChange} onKeyPress={handleKeyPress} name={name} userid={id} password={pw} error={error}
       />
     )
   }
@@ -59,7 +59,8 @@ export default connect(
   (state) => ({
     name : state.register.getIn(['registerBox', 'name']),
     id : state.register.getIn(['registerBox', 'id']),
-    pw: state.register.getIn(['registerBox', 'pw'])
+    pw: state.register.getIn(['registerBox', 'pw']),
+    error : state.register.getIn(['registerBox', 'error']),
   }),
   (dispatch) => ({
     RegisterActions : bindActionCreators(RegisterActions, dispatch)
