@@ -66,6 +66,12 @@ export const writeComment = ({post_ix, parent_ix, is_private, is_anon, contents,
   }
 }
 );
+export const removeComment = ({id, jwt}) => axios.delete(`/api/comment/${id}`,
+  {headers: {
+          "x-access-token" : jwt
+  }
+}
+);
 
 export const getBoardName = ({boardIx}) => axios.get(`/api/board/${boardIx}`);
 export const addBoard = ({name, is_admin, parent_name}, jwt) => axios.post(`/api/board`, {name, is_admin, parent_name},

@@ -8,10 +8,12 @@ import * as api from  'lib/api';
 const GET_COMMENT_LIST = 'comment/GET_COMMENT_LIST';
 const CHANGE_INPUT = 'comment/CHANGE_INPUT';
 const WRITE_COMMENT = 'comment/WRITE_COMMENT'
+const REMOVE_COMMENT = 'comment/REMOVE_COMMENT'
 
 export const getCommentList = createAction(GET_COMMENT_LIST, api.getCommentList);
 export const changeInput = createAction(CHANGE_INPUT);
 export const writeComment = createAction(WRITE_COMMENT, api.writeComment);
+export const removeComment = createAction(REMOVE_COMMENT, api.removeComment);
 
 const initialState = Map({
   comments : List(),
@@ -35,6 +37,13 @@ export default handleActions({
       console.log('댓글작성 성공');
       return state.set('contents', '')
                   .set('submit', true)
+    }
+  }),
+  ...pender({
+    type : REMOVE_COMMENT,
+    onSuccess : (state, action) => {
+      console.log('댓글삭제 성공');
+      return state.set('submit', true)
     }
   }),
 

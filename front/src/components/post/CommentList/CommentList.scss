@@ -17,21 +17,33 @@
   padding-top: .75rem;
   padding-bottom: 1.25rem;
   padding-left: 1.75rem;
-  padding-right: 2rem;
+  padding-right: 1rem;
   word-break: keep-all;
   @include material-shadow(1, 0.7);
   font-weight: 400;
   & + & {
     margin-top: 1rem;
   }
-  .user-name{
-    margin-bottom: .5rem;
-    border-bottom: 1px solid lightgray;
-    display: inline-block;
-    font-weight: 400;
-    font-size: .75rem;
-    padding-bottom: .25rem;
+  .user-box{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    .user-name{
+      margin-bottom: .5rem;
+      border-bottom: 1px solid lightgray;
+
+      display: inline-block;
+      font-weight: 400;
+      font-size: .75rem;
+      padding-bottom: .25rem;
+
+
+    }
+    img{
+      height: 20px !important;
+    }
   }
+
   .comment-date{
     margin-top: .75rem;
     font-weight: 300;

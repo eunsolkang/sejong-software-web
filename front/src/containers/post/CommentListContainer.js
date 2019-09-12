@@ -15,6 +15,13 @@ class CommentListContainer extends React.Component {
       id
     });
   }
+  handleRemove = (e) => {
+    const {CommentActions, jwt } = this.props;
+    const id = e.target.name
+    CommentActions.removeComment({
+      id, jwt
+    });
+  }
   componentDidMount(){
     this.getCommentList();
   }
@@ -25,12 +32,12 @@ class CommentListContainer extends React.Component {
   }
   render () {
     const { loading, comments, submit} = this.props;
-
+    const {  handleRemove } =this;
     if(loading) return null;
 
     return (
       <div>
-        <CommentList comments={comments}/>
+        <CommentList comments={comments} onRemove={handleRemove}/>
       </div>
     )
 
@@ -41,7 +48,8 @@ export default connect(
   (state) => ({
     comments : state.comment.get('comments'),
     loading : state.pender.pending['comment/GET_COMMENT_LIST'],
-    submit : state.comment.get('submit')
+    submit : state.comment.get('submit'),
+    jwt : state.login.get('jwt')
   }),
   (dispatch) => ({
     CommentActions: bindActionCreators(commentAction, dispatch)
