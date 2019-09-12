@@ -9,11 +9,13 @@ const LOGOUT = 'login/LOGOUT';
 const CHECK_LOGIN = 'login/CHECK_LOGIN';
 const CHANGE_INPUT = 'login/CHANGE_INPUT';
 const CHECK_USERINFO = 'login/CHECK_USERINFO'
+const CHECK_ADMIN = 'login/CHECK_ADMIN'
 const AUTO_LOGIN = 'login/AUTO_LOGIN'
 
 export const login = createAction(LOGIN, api.login);
 export const logout = createAction(LOGOUT);
 export const checkLogin = createAction(CHECK_LOGIN, api.checkLogin);
+export const checkAdmin = createAction(CHECK_ADMIN, api.checkLogin);
 export const changeInput = createAction(CHANGE_INPUT);
 export const autoLogin = createAction(AUTO_LOGIN);
 export const checkUserinfo = createAction(CHECK_USERINFO, api.userInfo)
@@ -51,7 +53,13 @@ export default handleActions({
       return state.set('commentName', name)
                   .setIn(['autoBox', 'id'], id)
                   .setIn(['autoBox', 'pw'], pw)
-                  .set('power', is_admin);
+    }
+  }),
+  ...pender({
+    type: CHECK_ADMIN,
+    onSuccess: (state, action) =>{
+      const { is_admin }= action.payload.data.info;
+      return state.set('power', is_admin);
     }
   }),
   ...pender({

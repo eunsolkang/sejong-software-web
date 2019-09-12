@@ -16,12 +16,19 @@ class Base extends React.Component {
       }catch(e){
         console.log(e);
       }
+      try{
+        const { jwt } = this.props;
+        await LoginActions.checkAdmin({jwt});
+      }catch(e){
+        console.log(e);
+      }
     }
     try{
       await BoardActions.getBoardList();
     }catch(e){
       console.log(e);
     }
+
   }
   componentDidMount(){
       this.initialize();
@@ -35,7 +42,10 @@ class Base extends React.Component {
 }
 
 export default connect(
-  null,
+  (state) => ({
+    power : state.login.get('power'),
+    jwt : state.login.get('jwt')
+  }),
   (dispatch) => ({
     LoginActions : bindActionCreators(loginActions, dispatch),
     BoardActions : bindActionCreators(boardActions, dispatch)

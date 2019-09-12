@@ -29,7 +29,7 @@ class EditorPaneContainer extends React.Component {
 
   render () {
     const { boardName } = this.state;
-    const { title, markdown, privateCheck, commentCheck, boardIx, boards, anonCheck } = this.props;
+    const { title, markdown, privateCheck, commentCheck, boardIx, boards, anonCheck, power } = this.props;
     const { handleChangeInput, handleChangeMenu } = this;
     return (
       <EditorPane
@@ -42,6 +42,7 @@ class EditorPaneContainer extends React.Component {
         onChangeMenu={handleChangeMenu}
         boardPick={boardName}
         boards={boards}
+        power={power}
       />
     );
   }
@@ -57,6 +58,7 @@ export default connect(
     anonCheck : state.editor.get('anonCheck'),
     boardIx : state.editor.get('boardIx'),
     boards : state.board.get('boards'),
+    power : state.login.get('power'),
   }),
   (dispatch) => ({
     EditorActions : bindActionCreators(editorActions, dispatch),

@@ -68,7 +68,7 @@ class EditorPane extends React.Component {
 
   render () {
     const { handleChange } = this;
-    const { tags, title, markdown, commentCheck, privateCheck, anonCheck, onChangeMenu, boardPick, boards } = this.props;
+    const { tags, title, markdown, commentCheck, privateCheck, anonCheck, onChangeMenu, boardPick, boards, power } = this.props;
     const boardList = boards && boards.map(
       (board) => {
         const {name, is_admin, ix, parent_name} = board.toJS();
@@ -77,18 +77,21 @@ class EditorPane extends React.Component {
             (boardlist) => {
 
               if(name === boardlist.toJS().parent_name){
-                return (
-                  <a
-                    name={boardlist.toJS().name}
-                    id={boardlist.toJS().ix}
-                    onClick={onChangeMenu}
-                    exact
-                    className={cx('dropdown-content-right')}
-                    key={boardlist.toJS().ix}
-                  >
-                  {boardlist.toJS().name}
-                </a>
-                )
+                if(power === boardlist.toJS().is_admin){
+                  return (
+                    <a
+                      name={boardlist.toJS().name}
+                      id={boardlist.toJS().ix}
+                      onClick={onChangeMenu}
+                      exact
+                      className={cx('dropdown-content-right')}
+                      key={boardlist.toJS().ix}
+                    >
+                    {boardlist.toJS().name}
+                  </a>
+                  )
+                }
+
               }
             }
           )

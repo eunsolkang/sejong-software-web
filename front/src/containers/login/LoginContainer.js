@@ -13,12 +13,20 @@ class LoginContainer extends React.Component {
     const { LoginActions, id, pw, history, error} = this.props;
     try{
       await LoginActions.login({id, pw});
-      const {jwt, logged } = this.props;
+      const {jwt, logged, power } = this.props;
       localStorage.logged = jwt;
+
+    }catch(e){
+      console.log(e);
+    }
+    try{
+      const { jwt } = this.props;
+      await LoginActions.checkAdmin({jwt});
       history.push('/')
     }catch(e){
       console.log(e);
     }
+
   }
   handleChange = (e) => {
     const { name, value } = e.target;
