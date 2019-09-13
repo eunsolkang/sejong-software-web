@@ -1,0 +1,58 @@
+@import 'styles/utils';
+
+.question {
+  padding-top: 1rem !important;
+  background : white;
+
+  width:200px;
+}
+label{
+  span{
+    margin-right: 1rem;
+  }
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.data{
+  // padding-top: 1rem;
+  padding-bottom: .5rem;
+  display: flex;
+  flex-direction: column;
+  // padding-bottom: 1rem;
+  .title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem !important;
+  }
+  .list{
+    margin-left:2rem;
+    .list-item{
+      width:120px;
+      padding-top: .25rem;
+      padding-bottom: .25rem;
+      padding-left: .25rem;
+      // border: 1px solid $oc-gray-3;
+    }
+  }
+  input{
+    &[type="checkbox"]{
+      margin-bottom: 2rem;
+      margin-top: 1rem;
+    }
+    margin-left: 2rem;
+    margin-right: 0rem !important;
+    width:200px;
+    padding-left: .25rem;
+    padding-right: .25rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    margin-bottom: 0rem !important;
+    font-size: 1rem;
+    outline: none;
+  }
+
+}

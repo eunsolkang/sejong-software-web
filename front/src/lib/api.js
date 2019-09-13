@@ -1,8 +1,8 @@
 import axios from 'axios';
 import queryString from 'query-string';
 
-export const writePost = ({board_ix, title, contents, is_comment, is_private, is_anon}, jwt) => axios.post('/api/post', {
-    board_ix, title, contents, is_comment, is_private, is_anon
+export const writePost = ({board_ix, title, contents, is_comment, is_private, is_anon, vote_ix}, jwt) => axios.post('/api/post', {
+    board_ix, title, contents, is_comment, is_private, is_anon, vote_ix
   },
   {headers: {
           "x-access-token" : jwt
@@ -94,3 +94,25 @@ export const editBoard = ({ix, name}, jwt) => axios.put(`/api/board/${ix}`,
   }
 });
 export const getBoardList = () => axios.get('/api/board');
+
+export const getVote = ({vote_ix}) => axios.get(`/api/vote/${vote_ix}`);
+export const getVoteItem = ({vote_ix}) => axios.get(`/api/vote_item?vote_ix=${vote_ix}`);
+export const toVote = ({vote_item_ix}, jwt) => axios.post(`/api/vote_to_item`, {vote_item_ix},
+  {headers: {
+          "x-access-token" : jwt
+  }
+}
+);
+export const addVote = ({title}, jwt) => axios.post(`/api/vote`, {title},
+  {headers: {
+          "x-access-token" : jwt
+  }
+});
+export const addVoteItem = ({contents, vote_ix}, jwt) => axios.post(`/api/vote_item`, {contents, vote_ix},
+  {headers: {
+          "x-access-token" : jwt
+  }
+}
+
+
+);

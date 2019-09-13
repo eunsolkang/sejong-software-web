@@ -20,6 +20,7 @@ const initialState = Map({
   modal : Map({
     remove : false,
     admin : false,
+    vote : false,
     check : false,
 
   }),

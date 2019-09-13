@@ -58,7 +58,7 @@ class Post extends React.Component {
     const { loading, post, jwt} = this.props;
     if(loading) return null;
 
-    const { title, contents, createdAt, is_comment, board_ix, user_ix } = post.toJS();
+    const { title, contents, createdAt, is_comment, board_ix, user_ix, vote_ix } = post.toJS();
     const { userName, error, history, logged, match, userix, power } = this.props;
     const {handleRemove } = this;
     const { id } = match.params;
@@ -78,7 +78,7 @@ class Post extends React.Component {
             power={power}
 
           />
-          <PostBody body={contents} error={error}/>
+        <PostBody body={contents} error={error} vote_ix={vote_ix}/>
           {
             is_comment && [
               <CommentEditerContainer key={1}/>,
@@ -109,6 +109,8 @@ export default connect(
     userix : state.login.get('userix'),
     logged : state.login.get('logged'),
     power : state.login.get('power'),
+
+
   }),
   (dispatch) => ({
     postActions: bindActionCreators(postActions, dispatch),

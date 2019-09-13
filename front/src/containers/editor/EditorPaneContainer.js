@@ -4,6 +4,7 @@ import EditorPane from 'components/editor/EditorPane';
 import {bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as editorActions from 'store/modules/editor';
+import * as baseActions from 'store/modules/base';
 import * as boardActions from 'store/modules/board';
 
 class EditorPaneContainer extends React.Component {
@@ -26,11 +27,16 @@ class EditorPaneContainer extends React.Component {
     console.log(id);
     EditorActions.changeMenu({boardIx : id})
   }
-
+  handleCreateVote = () => {
+    const { BaseActions } = this.props;
+    const check = false;
+    const modalName = 'vote'
+    BaseActions.showModal({modalName, check });
+  }
   render () {
     const { boardName } = this.state;
     const { title, markdown, privateCheck, commentCheck, boardIx, boards, anonCheck, power } = this.props;
-    const { handleChangeInput, handleChangeMenu } = this;
+    const { handleChangeInput, handleChangeMenu, handleCreateVote } = this;
     return (
       <EditorPane
         title={title}
@@ -40,6 +46,7 @@ class EditorPaneContainer extends React.Component {
         anonCheck={anonCheck}
         commentCheck={commentCheck}
         onChangeMenu={handleChangeMenu}
+        onCreateVote={handleCreateVote}
         boardPick={boardName}
         boards={boards}
         power={power}
@@ -62,6 +69,7 @@ export default connect(
   }),
   (dispatch) => ({
     EditorActions : bindActionCreators(editorActions, dispatch),
-    BoardActions : bindActionCreators(boardActions, dispatch)
+    BoardActions : bindActionCreators(boardActions, dispatch),
+    BaseActions : bindActionCreators(baseActions, dispatch),
   })
 )(EditorPaneContainer);

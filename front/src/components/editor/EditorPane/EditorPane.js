@@ -16,6 +16,7 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css'
 
 import Toggle from 'react-toggle'
+import Button from 'components/common/Button'
 
 const cx = classNames.bind(styles);
 
@@ -68,7 +69,7 @@ class EditorPane extends React.Component {
 
   render () {
     const { handleChange } = this;
-    const { tags, title, markdown, commentCheck, privateCheck, anonCheck, onChangeMenu, boardPick, boards, power } = this.props;
+    const { tags, title, markdown, commentCheck, privateCheck, anonCheck, onChangeMenu, boardPick, boards, power, onCreateVote } = this.props;
     const boardList = boards && boards.map(
       (board) => {
         const {name, is_admin, ix, parent_name} = board.toJS();
@@ -174,6 +175,10 @@ class EditorPane extends React.Component {
               />
           </label>
         </div>
+        <div className={cx('comment-able')}>
+          <Button onClick={onCreateVote}>투표추가</Button>
+        </div>
+
       </div>
       </div>
     )

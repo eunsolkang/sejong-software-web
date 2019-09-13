@@ -4,13 +4,17 @@ import EditorTemplate from 'components/editor/EditorTemplate'
 import EditorHeaderContainer from 'containers/editor/EditorHeaderContainer';
 import EditorPaneContainer from 'containers/editor/EditorPaneContainer'
 import PreviewPaneContainer from 'containers/editor/PreviewPaneContainer'
+import AddVoteModalContainer from 'containers/modal/AddVoteModalContainer'
 
 const EditorPage = (props) => {
   return (
     <EditorTemplate
       header={<EditorHeaderContainer/>}
       editor={<EditorPaneContainer/>}
-      preview={<PreviewPaneContainer/>}/>
+      preview={<PreviewPaneContainer/>}
+      modal={<AddVoteModalContainer/>}
+    >
+    </EditorTemplate>
   )
 }
 

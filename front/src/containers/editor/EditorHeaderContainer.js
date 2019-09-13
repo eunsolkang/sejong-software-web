@@ -24,15 +24,17 @@ class EditorHeaderContainer extends React.Component {
   componentDidUpdate
   handleSubmit = async() =>{
     const { title, markdown, EditorActions, history,
-      location, jwt, commentCheck, privateCheck, anonCheck, boardIx} = this.props;
-      console.log( anonCheck);
+      location, jwt, commentCheck, privateCheck, anonCheck, boardIx, vote_ix} = this.props;
+      console.log("투표이름 :", vote_ix);
+
     const post = {
       board_ix : boardIx,
       title : title,
       contents : markdown,
       is_comment : commentCheck,
       is_private : privateCheck,
-      is_anon : anonCheck
+      is_anon : anonCheck,
+      vote_ix : vote_ix
     };
     try{
       const { id } = queryString.parse(location.search);
@@ -72,6 +74,7 @@ export default connect(
     privateCheck : state.editor.get('privateCheck'),
     boardIx : state.editor.get('boardIx'),
     anonCheck : state.editor.get('anonCheck'),
+    vote_ix : state.vote.get('vote_ix')
   }),
   (dispatch) => ({
     EditorActions : bindActionCreators(editorActions, dispatch)

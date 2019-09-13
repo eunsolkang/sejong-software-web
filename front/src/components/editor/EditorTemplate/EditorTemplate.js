@@ -23,7 +23,7 @@ class EditorTemplate extends React.Component {
     window.addEventListener('mouseup', this.handleMouseUp)
   }
   render () {
-    const { header, editor, preview } = this.props;
+    const { header, editor, preview, modal } = this.props;
     const { leftPercentage } = this.state;
     const { handleSeparatorMouseDown } = this;
     const leftStyle = {
@@ -51,6 +51,7 @@ class EditorTemplate extends React.Component {
             style={separatorStyle}
             onMouseDown={handleSeparatorMouseDown}/>
         </div>
+        {modal}
       </div>
     )
   }

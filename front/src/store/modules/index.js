@@ -6,4 +6,5 @@ export { default as login } from  './login';
 export { default as comment } from  './comment';
 export { default as register } from  './register';
 export { default as board } from  './board';
+export { default as vote } from  './vote';
 export { penderReducer as pender } from 'redux-pender';
