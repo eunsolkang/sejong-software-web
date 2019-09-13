@@ -6,7 +6,6 @@
   margin: 0 auto;
   margin-bottom: 0rem;
   margin-top: 1.25rem;
-  height: 100px;
   transform: translateY(-3rem);
   @include material-shadow(2, 0.7);
   @include media("<large"){ width: 768px; }
@@ -21,18 +20,73 @@
   background: white;
   .textarea-box{
     width:calc(100% - 100px);
-    .username{
-      font-size: .75rem;
-      font-weight: 400;
-      padding-left: 1.75rem;
-      padding-top: .75rem;
+    .username-box{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: .5rem;
+      padding-top: 1rem;
+      justify-content: space-between;
+
+      .username{
+        font-size: .75rem;
+        font-weight: 400;
+        margin-left: 1.75rem;
+        padding-bottom: .5rem;
+        border-bottom: 1px solid $oc-gray-4;
+
+      }
+      .username-option{
+        padding-bottom: .5rem;
+        margin-right: 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid $oc-gray-4;
+        .comment-able {
+          margin-right: .5rem;
+          // border-right: 2px solid $oc-gray-9;
+          margin-left: 0;
+          // border-bottom: 2px solid $oc-gray-9;
+          // height: 100%;
+          background-color: none;
+          display: flex;
+          justify-content: flex-start;
+          // padding-left: 1rem;
+          color:white;
+          label{
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color:white;
+            margin-bottom: 0;
+            padding-left: 0;
+
+            span{
+              margin-right: .25rem;
+              font-size: .7rem;
+              color:black;
+
+            }
+            .react-toggle{
+              zoom:0.75;
+            }
+            .toggle{
+            }
+          }
+
+
+        }
+      }
     }
+
     textarea{
       display: inline;
       resize: none;
       border: none;
       outline: none;
-      height: 55px;
+      height: 65px;
       width: 100%;
       @include media("<large"){ width: 768px; }
       @include media("<medium"){ width: calc(100% - 2rem); }

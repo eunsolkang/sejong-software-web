@@ -9,6 +9,14 @@ import queryString from 'query-string';
 
 
 class CommentEditerContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPrivate : false,
+      isAnon : false,
+      contents : ''
+    };
+  }
   initialize = async ()=>{
     const { LoginActions, jwt } = this.props;
     try{
@@ -19,14 +27,15 @@ class CommentEditerContainer extends React.Component {
   }
   handleSubmit = async() =>{
 
-    const { jwt, contents, CommentActions, match} = this.props;
+    const { jwt, CommentActions, match} = this.props;
+    const { isPrivate, isAnon, contents } = this.state;
     const { id } = match.params
     const comment = {
       post_ix : id,
       parent_ix: id,
       contents : contents,
-      is_anon : false,
-      is_private : false,
+      is_anon : isAnon,
+      is_private : isPrivate,
       is_comment_parent: false
     };
     try{
@@ -36,24 +45,39 @@ class CommentEditerContainer extends React.Component {
     }
   }
   handleChangeInput = (e) => {
-    const { onChangeInput } = this.props;
-    const { name, value } = e.target;
-    const { CommentActions } = this.props;
-    CommentActions.changeInput({name, value});
+    const { type } = e.target;
+    if( type === 'checkbox'){
+      const { name, checked } = e.target;
+      this.setState({
+        [name] : checked
+      })
+    }
+    else{
+      const { name, value } = e.target;
+      this.setState({
+        [name] : value
+      })
+    }
+
   }
   componentDidMount(){
     this.initialize();
   }
   render () {
-    const { contents, commentName } = this.props;
+    const {  commentName } = this.props;
     const { handleChangeInput, handleSubmit } = this;
+    const { isPrivate, isAnon, contents  } = this.state;
     return (
       <div>
         <CommentEditer
                 userName={commentName}
                 contents={contents}
                 onChangeInput={handleChangeInput}
-                onSubmit={handleSubmit}/>
+                onSubmit={handleSubmit}
+                isPrivate={isPrivate}
+                isAnon={isAnon}
+                />
+
       </div>
     )
 

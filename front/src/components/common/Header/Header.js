@@ -25,7 +25,7 @@ const Header = ({postIx, onRemove, logged, onLogout, error, onSidebarOpen, board
 
             if(name === boardlist.toJS().parent_name){
 
-              let toPath = '/?board_ix=' + boardlist.toJS().ix
+              let toPath = '/board?board_ix=' + boardlist.toJS().ix
               return (
                 <NavLink
                   exact

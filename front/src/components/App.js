@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Switch, Route } from 'react-router-dom';
-import { ListPage, PostPage, EditorPage, LoginPage, NotFoundPage, RegisterPage, AdminPage} from 'pages'
+import { ListPage, PostPage, EditorPage, LoginPage, NotFoundPage, RegisterPage, AdminPage, MainPage} from 'pages'
 import Base from 'containers/common/Base'
 
 
@@ -9,7 +9,8 @@ const App = (props) => {
   return (
     <div>
       <Switch>
-        <Route exact path="/" component={ListPage}></Route>
+        <Route exact path="/" component={MainPage}></Route>
+        <Route exact path="/board" component={ListPage}></Route>
         <Route exact path="/post/:id" component={PostPage}></Route>
         <Route exact path="/editor" component={EditorPage}></Route>
         <Route exact path="/login" component={LoginPage}></Route>
