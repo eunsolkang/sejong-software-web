@@ -11,14 +11,18 @@ const cx = classNames.bind(styles);
 
 const PostItem = ({title, ix, createdAt, isPrivate, userName}) => {
   let privated = false
+  let isAnon = false
   if(title === 'private post'){
     console.log('비밀글');
     privated = true
   }
+  if(userName === 'anon'){
+    isAnon = true;
+  }
   return (
       <div className={cx('post-item', {isPrivate})}>
         <h2><Link className={cx({isPrivate})} to={`/post/${ix}`}>{privated ? <div>비밀글입니다</div> : title}</Link></h2>
-        <div className={cx('date', {isPrivate})}>{moment(createdAt).format('ll')} / {userName ? userName : "이름없음"}</div>
+        <div className={cx('date', {isPrivate})}>{moment(createdAt).format('ll')} / {isAnon ? "익명" : (userName ? userName : "이름없음") }</div>
       </div>
   )
 }
@@ -29,6 +33,7 @@ const PostList = ({posts, search}) => {
   const postList = filteredList && filteredList.map(
     (post) => {
       const {ix, title, createdAt, is_private, user_name} = post.toJS();
+      console.log(user_name);
       return (
         <PostItem
           title={title}

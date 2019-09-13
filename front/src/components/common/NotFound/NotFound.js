@@ -10,7 +10,7 @@ const NotFound = ({onGoBack, type}) => {
   return (
     <div className={cx('not-found')}>
       <h2>{type}</h2>
-      <Button onClick={onGoBack} theme="outline">
+      <Button onClick={onGoBack} theme="red">
         돌아가기
       </Button>
     </div>

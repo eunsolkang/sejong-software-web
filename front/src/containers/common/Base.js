@@ -11,8 +11,8 @@ class Base extends React.Component {
     if ( localStorage.logged ) {
       try{
         await LoginActions.autoLogin({
-                jwt : localStorage.logged
-              })
+          jwt : localStorage.logged
+        })
       }catch(e){
         console.log(e);
       }

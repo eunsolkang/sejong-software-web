@@ -27,11 +27,18 @@ class Post extends React.Component {
         const {post} = this.props;
         const { handleError } = this
         const { user_ix } = post.toJS();
-        try{
-          await LoginActions.checkUserinfo({user_ix});
-        }catch(e){
-          console.log(e);
+        if (user_ix !== -1){
+          try{
+            console.log(user_ix);
+            await LoginActions.checkUserinfo({user_ix});
+          }catch(e){
+            console.log(e);
+          }
         }
+        else{
+          await LoginActions.clearUserinfo();
+        }
+
     }catch(e){
       console.log(e);
     }
@@ -51,11 +58,10 @@ class Post extends React.Component {
     const { loading, post, jwt} = this.props;
     if(loading) return null;
 
-    const { title, contents, createdAt, is_comment, board_ix } = post.toJS();
-    const { userName, error, history, logged, match } = this.props;
+    const { title, contents, createdAt, is_comment, board_ix, user_ix } = post.toJS();
+    const { userName, error, history, logged, match, userix, power } = this.props;
     const {handleRemove } = this;
     const { id } = match.params;
-    console.log(post.toJS());
     if (jwt || (board_ix === 13 || board_ix === 14 || board_ix === 15 || board_ix === 16 || board_ix == 10 || board_ix === 11)){
       return (
         <div>
@@ -67,6 +73,10 @@ class Post extends React.Component {
             onRemove={handleRemove}
             logged={logged}
             postIx={id}
+            publisher={user_ix}
+            userix={userix}
+            power={power}
+
           />
           <PostBody body={contents} error={error}/>
           {
@@ -96,7 +106,9 @@ export default connect(
     loading: state.pender.pending['post/GET_POST'],
     userName : state.login.get('userName'),
     error : state.post.get('error'),
+    userix : state.login.get('userix'),
     logged : state.login.get('logged'),
+    power : state.login.get('power'),
   }),
   (dispatch) => ({
     postActions: bindActionCreators(postActions, dispatch),

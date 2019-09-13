@@ -41,7 +41,7 @@ const Header = ({postIx, onRemove, logged, onLogout, error, onSidebarOpen, board
         )
 
         return (
-          <div className={cx('dropdown')}>
+          <div className={cx('dropdown')} key={ix}>
             <div className={cx('drop-btn')}>{name}<img src={down_arrow}></img></div>
             <div className={cx('dropdown-content')}>
               {navlist}

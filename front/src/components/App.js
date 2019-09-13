@@ -8,6 +8,7 @@ import Base from 'containers/common/Base'
 const App = (props) => {
   return (
     <div>
+      <Base/>
       <Switch>
         <Route exact path="/" component={MainPage}></Route>
         <Route exact path="/board" component={ListPage}></Route>
@@ -19,7 +20,7 @@ const App = (props) => {
         <Route exact path="/admin" component={AdminPage}></Route>
         <Route component={NotFoundPage}></Route>
       </Switch>
-      <Base/>
+
     </div>
 
   );

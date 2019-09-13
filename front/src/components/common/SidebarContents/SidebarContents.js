@@ -50,7 +50,7 @@ class SidebarContents extends React.Component {
 
           return (
             <div
-              exact
+        
               className={cx('nav')}
               key={ix}
             >

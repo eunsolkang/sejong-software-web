@@ -12,7 +12,10 @@ import Button from 'components/common/Button'
 
 const cx = classNames.bind(styles);
 
-const PostInfo = ({publishedDate, title, userName, error, logged, postIx, onRemove}) => {
+const PostInfo = ({publishedDate, title, userName, error, logged, postIx, onRemove, userix, publisher, power}) => {
+  console.log("쓴사람 : ", userName);
+  console.log("지금 유저 : ", userix);
+  console.log("관리자 : ", power);
   return (
     <div className={cx('post-info')}>
       <div className={cx('info')}>
@@ -25,7 +28,7 @@ const PostInfo = ({publishedDate, title, userName, error, logged, postIx, onRemo
               <div className={cx('userName')}>{userName ? userName : '이름없음'}님이 작성</div>
               <div className={cx('controls')}>
                 {
-                  logged && !error && [
+                  ( power || (logged && !error && (userix === publisher)) )&&[
                     <Button key="edit" theme="outline" to={`/editor?id=${postIx}`}><img className={cx('edit')} src={ic_edit}></img></Button>,
                     <Button key="remove" theme="outline" onClick={onRemove}><img  className={cx('del')} src={ic_del}></img></Button>
                   ]

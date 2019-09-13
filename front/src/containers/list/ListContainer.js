@@ -11,10 +11,14 @@ import queryString from "query-string";
 // const queryString = require('query-string');
 
 class ListContainer extends React.Component {
-  getPostList = (boardIx) =>{
+  getPostList = async(boardIx) =>{
+    const { loading } = this.props;
+    console.log(loading);
+    if (loading ) return null;
     const {ListActions, page, jwt } = this.props;
+    console.log(jwt);
     if (boardIx) {
-      ListActions.getPostList({
+      await ListActions.getPostList({
         page,
         boardIx,
         jwt
@@ -23,7 +27,7 @@ class ListContainer extends React.Component {
     else{
       const { boardIxPath } = this.props;
       console.log(boardIxPath);
-      ListActions.getPostList({
+       await ListActions.getPostList({
         page,
         boardIx : boardIxPath,
         jwt
@@ -39,9 +43,7 @@ class ListContainer extends React.Component {
     const { handlePageUp } = this;
     history.push(handlePageUp(page+1))
   }
-  componentDidMount(){
-    this.initialize()
-  }
+
    handleScroll(){
      console.log('왜안됨 시발');
    }

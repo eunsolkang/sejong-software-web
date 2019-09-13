@@ -9,6 +9,7 @@ import * as boardActions from 'store/modules/board';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import queryString from "query-string";
+import NotFound from 'components/common/NotFound'
 
 
 class AdminContainer extends React.Component {
@@ -55,18 +56,28 @@ class AdminContainer extends React.Component {
   }
   render () {
     const { handleAddBoard, handleRemove, handleUpdate, handleEdit, handleAddGroup  } = this
-    const { boards } = this.props;
+    const { boards, power , history} = this.props;
+    let type_not = "접근권한이 없습니다."
+
+    if(power){
+      return (
+        <Admin
+          onAdd={handleAddGroup}
+          onBoard={handleAddBoard}
+          boards={boards}
+          onRemove={handleRemove}
+          onUpdate={handleEdit}
+        />
+      );
+    }
+    else{
+      return(
+        <NotFound onGoBack={history.goBack} type={type_not}/>
+      )
+
+    }
 
 
-    return (
-      <Admin
-        onAdd={handleAddGroup}
-        onBoard={handleAddBoard}
-        boards={boards}
-        onRemove={handleRemove}
-        onUpdate={handleEdit}
-      />
-    );
   }
 }
 
@@ -74,7 +85,9 @@ export default connect(
   (state) => ({
     boards : state.board.get('boards'),
     jwt : state.login.get('jwt'),
-    submit : state.board.get('submit')
+    submit : state.board.get('submit'),
+    power : state.login.get('power'),
+
   }),
   (dispatch) => ({
     BoardActions : bindActionCreators(boardActions, dispatch),

@@ -64,22 +64,28 @@ class CommentEditerContainer extends React.Component {
     this.initialize();
   }
   render () {
-    const {  commentName } = this.props;
+    const {  commentName,logged } = this.props;
     const { handleChangeInput, handleSubmit } = this;
     const { isPrivate, isAnon, contents  } = this.state;
-    return (
-      <div>
-        <CommentEditer
-                userName={commentName}
-                contents={contents}
-                onChangeInput={handleChangeInput}
-                onSubmit={handleSubmit}
-                isPrivate={isPrivate}
-                isAnon={isAnon}
-                />
+    if(logged){
+      return (
+        <div>
+          <CommentEditer
+                  userName={commentName}
+                  contents={contents}
+                  onChangeInput={handleChangeInput}
+                  onSubmit={handleSubmit}
+                  isPrivate={isPrivate}
+                  isAnon={isAnon}
+                  />
 
-      </div>
-    )
+        </div>
+      )
+    }
+    else{
+      return null;
+    }
+
 
   }
 }
@@ -88,7 +94,8 @@ export default connect(
   (state) => ({
     contents : state.comment.get('contents'),
     jwt : state.login.get('jwt'),
-    commentName : state.login.get('commentName')
+    commentName : state.login.get('commentName'),
+    logged : state.login.get('logged')
   }),
   (dispatch) => ({
     CommentActions: bindActionCreators(commentAction, dispatch),
