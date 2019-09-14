@@ -21,6 +21,7 @@ class AddVoteModalContainer extends React.Component {
     console.log('cancel');
     const { BaseActions, VoteActions  } = this.props;
     VoteActions.clearVote();
+    VoteActions.clearVoteItem();
     BaseActions.hideModal('vote');
   }
 

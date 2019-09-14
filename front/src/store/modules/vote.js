@@ -73,7 +73,9 @@ export default handleActions({
   }),
   [CLEAR_VOTE]: (state, action) => {
 
-    return state.set('vote_ix', null);
+    return state.set('vote_ix', null)
+                .set('item_add', true)
+                .set('add', false)
   },
   [CLEAR_VOTE_ITEM]: (state, action) => {
 
