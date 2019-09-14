@@ -10,7 +10,9 @@ const TO_VOTE = 'vote/TO_VOTE';
 const ADD_VOTE = 'vote/ADD_VOTE'
 const ADD_VOTE_ITEM = 'vote/ADD_VOTE_ITEM'
 const CLEAR_VOTE = 'vote/CLEAR_VOTE'
+const CLEAR_VOTE_ITEM = 'vote/CLEAR_VOTE_ITEM'
 
+export const clearVoteItem = createAction(CLEAR_VOTE_ITEM);
 export const clearVote = createAction(CLEAR_VOTE);
 export const getVote = createAction(GET_VOTE, api.getVote);
 export const getVoteItem = createAction(GET_VOTE_ITEM, api.getVoteItem, meta=>meta);
@@ -71,6 +73,10 @@ export default handleActions({
   }),
   [CLEAR_VOTE]: (state, action) => {
 
-    return state.setIn('vote_ix', null);
+    return state.set('vote_ix', null);
+  },
+  [CLEAR_VOTE_ITEM]: (state, action) => {
+
+    return state.set('voteItems', null)
   },
 }, initialState);

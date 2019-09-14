@@ -53,6 +53,10 @@ class AddVoteModalContainer extends React.Component {
       this.getItemList();
     }
   }
+  componentDidMount(){
+    const { VoteActions } = this.props;
+    VoteActions.clearVoteItem();
+  }
   render () {
     const { visible, check, add, item_add, voteItems } = this.props;
     const {title} = this.state;
@@ -81,6 +85,7 @@ export default connect(
     item_add : state.vote.get('item_add'),
     voteItems: state.vote.get('voteItems'),
     isAdd : state.vote.get('isAdd'),
+
   }),
   (dispatch) => ({
     BaseActions : bindActionCreators(baseActions, dispatch),

@@ -33,7 +33,7 @@ class SidebarContents extends React.Component {
 
               if(name === boardlist.toJS().parent_name){
 
-                let toPath = '/?board_ix=' + boardlist.toJS().ix
+                let toPath = '/board/?board_ix=' + boardlist.toJS().ix
                 return (
                   <NavLink
                     exact
@@ -50,7 +50,7 @@ class SidebarContents extends React.Component {
 
           return (
             <div
-        
+
               className={cx('nav')}
               key={ix}
             >

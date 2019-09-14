@@ -78,7 +78,7 @@ class EditorPane extends React.Component {
             (boardlist) => {
 
               if(name === boardlist.toJS().parent_name){
-                if(power === boardlist.toJS().is_admin){
+                if(power){
                   return (
                     <a
                       name={boardlist.toJS().name}
@@ -91,6 +91,22 @@ class EditorPane extends React.Component {
                     {boardlist.toJS().name}
                   </a>
                   )
+                }
+                else {
+                  if(!boardlist.toJS().is_admin){
+                    return (
+                      <a
+                        name={boardlist.toJS().name}
+                        id={boardlist.toJS().ix}
+                        onClick={onChangeMenu}
+                        exact
+                        className={cx('dropdown-content-right')}
+                        key={boardlist.toJS().ix}
+                      >
+                      {boardlist.toJS().name}
+                    </a>
+                    )
+                  }
                 }
 
               }

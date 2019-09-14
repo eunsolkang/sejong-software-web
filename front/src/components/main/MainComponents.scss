@@ -11,8 +11,14 @@
     justify-content: center;
     background: url('../../bg/background.png');
     background-size:cover;
+    @include media("<medium") {
+      padding-top: 5rem;
+    }
     img{
       height: 300px;
+      @include media("<medium") {
+        display: none;
+      }
 
     }
     .title{
