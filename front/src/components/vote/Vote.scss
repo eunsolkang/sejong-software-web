@@ -19,7 +19,7 @@
       }
       .vote-item-stick{
         margin-left: .5rem;
-        background: $oc-blue-6;
+        background: $main-color;
         height: 20px;
         width:100px;
       }
@@ -33,13 +33,13 @@
     margin-top: 1rem;
     display: inline-block;
     color:white;
-    background: $oc-blue-6;
+    background: $main-color;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     font-weight: 500;
     padding-bottom: .25rem;
     &:hover{
-      background: $oc-blue-7;
+      background: $hover-color;
     }
   }
 }

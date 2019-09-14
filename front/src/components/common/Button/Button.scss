@@ -26,7 +26,7 @@
       background: $hover-color;
     }
     &:active{
-      color: $oc-blue-5;
+      color: $active-color;
     }
   }
   &.red{
@@ -55,13 +55,13 @@
     font-weight: 500;
     color: black;
     &:hover{
-      color:$oc-blue-7;
+      color:$main-color;
       // font-weight: 600;
       transition: color 0.2s ease 0s, font-weight 0.2s ease 0s;
 
     }
     &:active{
-      color: $oc-blue-8;
+      color: $main-color;
 
     }
   }

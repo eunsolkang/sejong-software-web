@@ -49,7 +49,7 @@
     padding-top: 3rem;
     padding-bottom: 3rem;
     // padding-left: 1rem;
-    padding-right: 1rem;
+    // padding-right: 1rem;
 
     @include media("<wide") {
 
@@ -60,7 +60,89 @@
     @include media("<medium") {
       width: 100%;
     }
-    section{
+    #p1{
+      background-color: white;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 2rem;
+      padding-top: 1rem;
+      @include material-shadow(2, 0.5);
+      .hotpost{
+        width: 1024px;
+        @include media("<wide") {
+          width: 1024px;
+        }
+        @include media("<large") {
+          width: 768px;
+        }
+        @include media("<medium") {
+          width: 100%;
+        }
+        .title{
+          padding-left: 2rem;
+          font-weight: 600;
+          font-size: 1.5rem;
+          color:$main-color;
+          margin-bottom: 0rem;
+        }
+        .post-box{
+          padding-left: 1.75rem;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          .post{
+            background: white;
+            @include material-shadow(2, 0.5);
+            min-width: 310px;
+            margin-right: 1.25rem;
+            margin-top: 1.25rem;
+            border: 1px solid $oc-gray-2;
+            border-bottom: none;
+            // padding-bottom: .5rem;
+            .post-date{
+              padding-left: .75rem;
+              font-size: .75rem;
+              padding-top: .75rem;
+              color:$oc-gray-6;
+            }
+            .post-header{
+              text-align: right;
+              height: 35px;
+              background-color: $main-color;
+              color:white;
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+              padding-left: .75rem;
+              padding-right: .75rem;
+              font-weight: 500;
+              font-size: .95rem;
+
+            }
+            .post-title{
+              padding-right: .75rem;
+              padding-left: .75rem;
+              padding-top: .15rem;
+              font-weight: 500;
+              font-size: 1.1rem;
+            }
+            .post-user{
+              color:$oc-gray-8;
+              margin-bottom: .5rem;
+              padding-right: .75rem;
+              padding-left: .75rem;
+              margin-top: 1rem;
+              font-size: .85rem;
+            }
+
+          }
+        }
+      }
+    }
+    #p2{
       @include material-shadow(2, 0.5);
       padding-top: 2rem;
       padding-bottom: 2rem;

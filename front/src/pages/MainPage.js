@@ -1,12 +1,12 @@
 import React from 'react'
 
 import PageTemplate from 'components/common/PageTemplate'
-import MainComponents from 'components/main/MainComponents'
+import MainContainer from 'containers/main/MainContainer'
 
 const LoginPage = (props) => {
   return (
     <PageTemplate>
-      <MainComponents/>
+      <MainContainer/>
     </PageTemplate>
   )
 }

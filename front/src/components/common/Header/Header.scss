@@ -69,8 +69,6 @@
 
           height: 3rem;
 
-
-
           @include media("<=large"){
             display: none;
           }
@@ -160,7 +158,7 @@
               &:hover{
 
                 background-color: none;
-                color:$oc-blue-6;
+                color:$main-color;
               }
             }
 

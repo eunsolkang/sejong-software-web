@@ -7,9 +7,32 @@ import ic_3 from 'ic/bb_logo.png'
 import ic_4 from 'ic/is_logo.png'
 import main_logo from 'ic/main_logo.png'
 import Button from 'components/common/Button';
+import moment from 'moment';
 
 
-const MainComponents = (props) => {
+const MainComponents = ({hotPost}) => {
+  const postList = hotPost && hotPost.map(
+    (post) => {
+      const {title, view_count, user_name, createdAt, ix} = post.toJS();
+      const toPath = `/post/${ix}`
+      return (
+        <div class="post">
+          <div class="post-date">
+            {moment(createdAt).format('ll')}
+          </div>
+          <div class="post-title">
+            {title}
+          </div>
+          <div class="post-user">
+            {user_name}
+          </div>
+          <div class="post-header">
+            <a href={toPath}>바로가기</a>
+          </div>
+        </div>
+      )
+    }
+  )
   return (
     <div class="main-box">
       <div class="main-header">
@@ -22,15 +45,19 @@ const MainComponents = (props) => {
             제3대 세종대학교 소프트웨어 융합대학 학생회
           </div>
         </div>
-
-
-
       </div>
       <div class="main-wrapper">
-        <section>
-          <div class="title">
-
+        <section id="p1">
+          <div class="hotpost">
+            <div class="title">
+              인기게시물
+            </div>
+            <div class="post-box">
+              {postList}
+            </div>
           </div>
+        </section>
+        <section id="p2">
           <div class="card-box">
             <div class="card" id="m1">
               <div class="card-img" >

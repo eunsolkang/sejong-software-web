@@ -21,6 +21,8 @@ export const getPostList = ({page, boardIx, jwt}) => axios.get(`/api/post/?page=
         }
   }
 );
+export const getHotPostList = () => axios.get(`/api/hot_post`);
+
 
 export const editPost = ({id, board_ix,  title, contents}, jwt) => axios.put(`api/post/${id}}`,{
     board_ix, title, contents
