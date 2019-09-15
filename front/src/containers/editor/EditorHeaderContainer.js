@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 
 import * as editorActions from 'store/modules/editor';
+import * as voteActions from 'store/modules/vote';
 
 class EditorHeaderContainer extends React.Component {
   componentDidMount(){
@@ -23,7 +24,7 @@ class EditorHeaderContainer extends React.Component {
   }
   componentDidUpdate
   handleSubmit = async() =>{
-    const { title, markdown, EditorActions, history,
+    const { title, markdown, EditorActions, history, VoteActions,
       location, jwt, commentCheck, privateCheck, anonCheck, boardIx, vote_ix} = this.props;
       console.log("투표이름 :", vote_ix);
 
@@ -40,10 +41,14 @@ class EditorHeaderContainer extends React.Component {
       const { id } = queryString.parse(location.search);
       if(id){
         await EditorActions.editPost({id, ...post}, jwt);
+
         history.push(`/post/${id}`);
         return;
       }
+      VoteActions.clearVote();
+      VoteActions.clearVoteItem();
       await EditorActions.writePost(post, jwt);
+
       history.push(`/post/${this.props.postId}`);
     } catch(e){
       console.log(e);
@@ -77,6 +82,7 @@ export default connect(
     vote_ix : state.vote.get('vote_ix')
   }),
   (dispatch) => ({
-    EditorActions : bindActionCreators(editorActions, dispatch)
+    EditorActions : bindActionCreators(editorActions, dispatch),
+    VoteActions : bindActionCreators(voteActions, dispatch),
   })
 )(withRouter(EditorHeaderContainer));

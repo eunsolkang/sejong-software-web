@@ -14,6 +14,9 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+      .vote-item-name{
+        width:100px;
+      }
       input{
         margin-left: 1.25rem;
       }

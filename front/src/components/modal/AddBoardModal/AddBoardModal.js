@@ -5,6 +5,7 @@ import classNames from 'classnames/bind';
 import ModalWrapper from 'components/modal/ModalWrapper';
 import Button from 'components/common/Button'
 
+
 const cx = classNames.bind(styles)
 
 const AddBoardModal = ({visible, onConfirm, onCancel, onChange, type}) => {

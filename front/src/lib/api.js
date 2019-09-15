@@ -24,8 +24,8 @@ export const getPostList = ({page, boardIx, jwt}) => axios.get(`/api/post/?page=
 export const getHotPostList = () => axios.get(`/api/hot_post`);
 
 
-export const editPost = ({id, board_ix,  title, contents}, jwt) => axios.put(`api/post/${id}}`,{
-    board_ix, title, contents
+export const editPost = ({id, board_ix,  title, contents, is_comment, is_private, is_anon}, jwt) => axios.put(`api/post/${id}}`,{
+    board_ix, title, contents, is_comment, is_private, is_anon
   },
   {headers: {
           "x-access-token" : jwt

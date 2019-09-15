@@ -96,7 +96,7 @@
           .post{
             background: white;
             @include material-shadow(2, 0.5);
-            min-width: 310px;
+            min-width: 250px;
             margin-right: 1.25rem;
             margin-top: 1.25rem;
             border: 1px solid $oc-gray-2;
