@@ -8,6 +8,7 @@
     "classnames": "^2.2.6",
     "codemirror": "^5.48.2",
     "cross-env": "^5.2.0",
+    "eslint": "^6.3.0",
     "immutable": "^4.0.0-rc.12",
     "include-media": "^1.4.9",
     "marked": "^0.7.0",
@@ -30,7 +31,8 @@
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
     "redux-pender": "^2.0.12",
-    "remove-markdown": "^0.3.0"
+    "remove-markdown": "^0.3.0",
+    "typescript": "^3.6.3"
   },
   "scripts": {
     "start": "NODE_PATH=src PORT=8080 cross-env react-app-rewired start",
